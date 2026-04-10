@@ -194,20 +194,49 @@ function InsertChainStrip({ insertChain, onRemove }: { insertChain: InsertProces
   );
 }
 
+function GroupAccordion({
+  title,
+  count,
+  summary,
+  defaultOpen = false,
+  children,
+}: {
+  title: string;
+  count: number;
+  summary?: string;
+  defaultOpen?: boolean;
+  children: React.ReactNode;
+}) {
+  const [open, setOpen] = useState(defaultOpen);
+
+  return (
+    <div className="rounded border border-zinc-800 bg-zinc-950/40 overflow-hidden">
+      <button
+        onClick={() => setOpen((value) => !value)}
+        className="w-full flex items-center justify-between px-3 py-2 text-left hover:bg-zinc-800/40 transition-colors"
+      >
+        <div className="flex items-center gap-2 min-w-0">
+          <span className={`text-[10px] transition-transform ${open ? 'rotate-90' : ''}`}>▶</span>
+          <span className="text-[10px] tracking-wide text-zinc-400 uppercase">{title}</span>
+          <span className="text-[9px] px-1.5 py-0.5 rounded border border-zinc-700 bg-zinc-800/70 text-zinc-400">{count}</span>
+        </div>
+        {summary && <span className="text-[10px] text-zinc-500 truncate max-w-xs">{summary}</span>}
+      </button>
+      {open && <div className="p-2 border-t border-zinc-800">{children}</div>}
+    </div>
+  );
+}
+
 export default function PatchbayView({
   perspective, selectedMic, selectedPreamp, insertChain,
   onSelectMic, onSelectPreamp, onAddInsert, onRemoveInsert,
   equalizers, outboardProcessors,
 }: Props) {
   const rows = patchRows;
-  const [expanded, setExpanded] = useState<Set<string>>(new Set(['row-mic-ties', 'row-preamp-in']));
+  const [expandedRow, setExpandedRow] = useState<string | null>('row-mic-ties');
 
   const toggle = (id: string) => {
-    setExpanded(prev => {
-      const next = new Set(prev);
-      if (next.has(id)) next.delete(id); else next.add(id);
-      return next;
-    });
+    setExpandedRow((current) => (current === id ? null : id));
   };
 
   // IDs currently in the insert chain (for highlighting)
@@ -262,6 +291,43 @@ export default function PatchbayView({
     'Mix A Bus', 'Mix B Bus',
   ];
 
+  const currentRoute = [
+    selectedMic?.name ?? 'No mic selected',
+    selectedPreamp?.name ?? 'No preamp selected',
+    insertChain.length > 0 ? `${insertChain.length} insert${insertChain.length === 1 ? '' : 's'}` : 'No inserts',
+  ];
+
+  const rowPreview = (rowId: string) => {
+    switch (rowId) {
+      case 'row-mic-ties':
+        return `${microphones.length} models across ${micGroups.size} families`;
+      case 'row-preamp-in':
+        return `${preamps.length} preamps across ${preampGroups.size} topologies`;
+      case 'row-preamp-out':
+        return selectedPreamp ? `${selectedPreamp.name} feeding API line stage` : 'Tower outputs normalled to API line inputs';
+      case 'row-api-line-in':
+        return '16 channel inputs before inserts and mix routing';
+      case 'row-insert-send':
+        return '18 tap points: channels 1-16 plus Mix A/B';
+      case 'row-insert-return':
+        return 'Returns from outboard back into API channels and buses';
+      case 'row-dynamics':
+        return `${compressors.length} processors grouped by topology`;
+      case 'row-eq':
+        return `${equalizers.length} equalizers grouped by circuit family`;
+      case 'row-fx':
+        return `${outboardProcessors.length} FX and utility devices`;
+      case 'row-api-mix':
+        return 'Tracking on Mix A, FX and overflow on Mix B';
+      case 'row-pueblo':
+        return 'Pueblo mixing path plus Tonelux overflow summing';
+      case 'row-ad-daw':
+        return 'Two stereo A/D destinations into Aurora and DAW';
+      default:
+        return '';
+    }
+  };
+
   // Category styling
   const catColors: Record<string, string> = {
     'signal-path': 'bg-zinc-800/80',
@@ -273,14 +339,27 @@ export default function PatchbayView({
   return (
     <div className="flex-1 overflow-y-auto p-4 space-y-1">
       <p className="text-xs text-zinc-500 mb-3">
-        Signal flows top → bottom. Click rows to expand/collapse. Normalled connections shown between rows. Outboard racks are pools of gear for insert patching.
+        Signal flows top → bottom. One row opens at a time, and larger gear pools break into subgroup drawers so the patchbay stays readable.
       </p>
+
+      <div className="sticky top-0 z-10 mb-3 rounded border border-zinc-800 bg-zinc-950/95 backdrop-blur px-3 py-2">
+        <div className="flex flex-wrap items-center gap-2 text-[10px] uppercase tracking-wide text-zinc-500 mb-1">
+          <span>Current Route</span>
+          <span className="text-zinc-700">•</span>
+          <span>{expandedRow ? rows.find((row) => row.id === expandedRow)?.label : 'No row open'}</span>
+        </div>
+        <div className="flex flex-wrap items-center gap-1.5 text-xs text-zinc-300">
+          {currentRoute.map((part) => (
+            <span key={part} className="px-2 py-1 rounded border border-zinc-800 bg-zinc-900/70">{part}</span>
+          ))}
+        </div>
+      </div>
 
       {/* Insert chain strip (persistent) */}
       <InsertChainStrip insertChain={insertChain} onRemove={onRemoveInsert} />
 
       {rows.map((row) => {
-        const isOpen = expanded.has(row.id);
+        const isOpen = expandedRow === row.id;
         const hasNormal = row.normalled_to != null;
         const isHalfNormal = row.half_normal === true;
 
@@ -305,7 +384,7 @@ export default function PatchbayView({
                 )}
               </div>
               <span className="text-[10px] text-zinc-500 text-right max-w-xs truncate">
-                {row.description.slice(0, 70)}
+                {rowPreview(row.id)}
               </span>
             </button>
 
@@ -319,14 +398,19 @@ export default function PatchbayView({
                 {row.id === 'row-mic-ties' && (
                   <>
                     {Array.from(micGroups.entries()).map(([type, mics]) => (
-                      <div key={type}>
-                        <div className="text-[10px] tracking-wide text-zinc-500 uppercase mb-1.5">{type} ({mics.reduce((s,m)=>s+m.qty,0)} units)</div>
+                      <GroupAccordion
+                        key={type}
+                        title={type}
+                        count={mics.length}
+                        summary={`${mics.reduce((sum, mic) => sum + mic.qty, 0)} total units`}
+                        defaultOpen={selectedMic ? mics.some((mic) => mic.id === selectedMic.id) : false}
+                      >
                         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-1.5">
                           {mics.map(mic => (
                             <MicCard key={mic.id} mic={mic} selected={selectedMic?.id === mic.id} onSelect={onSelectMic} perspective={perspective} />
                           ))}
                         </div>
-                      </div>
+                      </GroupAccordion>
                     ))}
                   </>
                 )}
@@ -341,14 +425,19 @@ export default function PatchbayView({
                       </div>
                     )}
                     {Array.from(preampGroups.entries()).map(([label, pres]) => (
-                      <div key={label}>
-                        <div className="text-[10px] tracking-wide text-zinc-500 uppercase mb-1.5">{label}</div>
+                      <GroupAccordion
+                        key={label}
+                        title={label}
+                        count={pres.length}
+                        summary={`${pres.reduce((sum, pre) => sum + pre.channels, 0)} channels`}
+                        defaultOpen={selectedPreamp ? pres.some((pre) => pre.id === selectedPreamp.id) : false}
+                      >
                         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-1.5">
                           {pres.map(pre => (
                             <PreampCard key={pre.id} pre={pre} mic={selectedMic} selected={selectedPreamp?.id === pre.id} onSelect={onSelectPreamp} perspective={perspective} />
                           ))}
                         </div>
-                      </div>
+                      </GroupAccordion>
                     ))}
                   </>
                 )}
@@ -385,16 +474,26 @@ export default function PatchbayView({
                     <div className="text-xs text-zinc-400">
                       Half-normalled tap points — signal passes through to the API channel unless a patch cable is inserted. Tap here to feed outboard gear from the Dynamics, EQ, or FX racks below.
                     </div>
-                    <div className="grid grid-cols-3 md:grid-cols-6 gap-1">
-                      {apiInsertPoints.map((label, i) => (
-                        <div key={i} className={`text-center text-[10px] px-1.5 py-1.5 rounded border ${
-                          i >= 16 ? 'border-violet-600/40 bg-violet-950/30 text-violet-300' : 'border-zinc-700/50 bg-zinc-800/50 text-zinc-400'
-                        }`}>
-                          {label}
-                          <div className="text-[8px] text-zinc-600 mt-0.5">send</div>
-                        </div>
-                      ))}
-                    </div>
+                    <GroupAccordion title="Channel Inserts" count={16} summary="API channels 1-16" defaultOpen>
+                      <div className="grid grid-cols-4 md:grid-cols-8 gap-1">
+                        {apiInsertPoints.slice(0, 16).map((label, i) => (
+                          <div key={i} className="text-center text-[10px] px-1.5 py-1.5 rounded border border-zinc-700/50 bg-zinc-800/50 text-zinc-400">
+                            {label}
+                            <div className="text-[8px] text-zinc-600 mt-0.5">send</div>
+                          </div>
+                        ))}
+                      </div>
+                    </GroupAccordion>
+                    <GroupAccordion title="Mix Bus Inserts" count={2} summary="Mix A and Mix B stereo buses">
+                      <div className="grid grid-cols-2 gap-2">
+                        {apiInsertPoints.slice(16).map((label, i) => (
+                          <div key={i} className="text-center text-[10px] px-1.5 py-2 rounded border border-violet-600/40 bg-violet-950/30 text-violet-300">
+                            {label}
+                            <div className="text-[8px] text-violet-200/60 mt-0.5">send</div>
+                          </div>
+                        ))}
+                      </div>
+                    </GroupAccordion>
                     {insertChain.length > 0 && (
                       <div className="mt-2">
                         <InsertChainStrip insertChain={insertChain} onRemove={onRemoveInsert} />
@@ -409,16 +508,26 @@ export default function PatchbayView({
                     <div className="text-xs text-zinc-400">
                       Return points from outboard processing. When patched, the processed signal replaces the direct signal at the API channel.
                     </div>
-                    <div className="grid grid-cols-3 md:grid-cols-6 gap-1">
-                      {apiInsertPoints.map((label, i) => (
-                        <div key={i} className={`text-center text-[10px] px-1.5 py-1.5 rounded border ${
-                          i >= 16 ? 'border-violet-600/40 bg-violet-950/30 text-violet-300' : 'border-zinc-700/50 bg-zinc-800/50 text-zinc-400'
-                        }`}>
-                          {label}
-                          <div className="text-[8px] text-zinc-600 mt-0.5">return</div>
-                        </div>
-                      ))}
-                    </div>
+                    <GroupAccordion title="Channel Returns" count={16} summary="API channels 1-16" defaultOpen>
+                      <div className="grid grid-cols-4 md:grid-cols-8 gap-1">
+                        {apiInsertPoints.slice(0, 16).map((label, i) => (
+                          <div key={i} className="text-center text-[10px] px-1.5 py-1.5 rounded border border-zinc-700/50 bg-zinc-800/50 text-zinc-400">
+                            {label}
+                            <div className="text-[8px] text-zinc-600 mt-0.5">return</div>
+                          </div>
+                        ))}
+                      </div>
+                    </GroupAccordion>
+                    <GroupAccordion title="Mix Bus Returns" count={2} summary="Mix A and Mix B stereo buses">
+                      <div className="grid grid-cols-2 gap-2">
+                        {apiInsertPoints.slice(16).map((label, i) => (
+                          <div key={i} className="text-center text-[10px] px-1.5 py-2 rounded border border-violet-600/40 bg-violet-950/30 text-violet-300">
+                            {label}
+                            <div className="text-[8px] text-violet-200/60 mt-0.5">return</div>
+                          </div>
+                        ))}
+                      </div>
+                    </GroupAccordion>
                     {insertChain.length > 0 && (
                       <div className="mt-2">
                         <InsertChainStrip insertChain={insertChain} onRemove={onRemoveInsert} />
@@ -431,14 +540,19 @@ export default function PatchbayView({
                 {row.id === 'row-dynamics' && (
                   <>
                     {Array.from(compGroups.entries()).map(([topo, comps]) => (
-                      <div key={topo}>
-                        <div className="text-[10px] tracking-wide text-zinc-500 uppercase mb-1.5">{topo}</div>
+                      <GroupAccordion
+                        key={topo}
+                        title={topo}
+                        count={comps.length}
+                        summary={comps.some((comp) => chainIds.has(comp.id)) ? 'Contains selected insert' : undefined}
+                        defaultOpen={comps.some((comp) => chainIds.has(comp.id))}
+                      >
                         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-1.5">
                           {comps.map(comp => (
                             <CompCard key={comp.id} comp={comp} inChain={chainIds.has(comp.id)} onAdd={(c) => onAddInsert({ type: 'compressor', item: c })} perspective={perspective} />
                           ))}
                         </div>
-                      </div>
+                      </GroupAccordion>
                     ))}
                   </>
                 )}
@@ -447,14 +561,19 @@ export default function PatchbayView({
                 {row.id === 'row-eq' && (
                   <>
                     {Array.from(eqGroups.entries()).map(([label, eqs]) => (
-                      <div key={label}>
-                        <div className="text-[10px] tracking-wide text-zinc-500 uppercase mb-1.5">{label}</div>
+                      <GroupAccordion
+                        key={label}
+                        title={label}
+                        count={eqs.length}
+                        summary={eqs.some((eq) => chainIds.has(eq.id)) ? 'Contains selected insert' : undefined}
+                        defaultOpen={eqs.some((eq) => chainIds.has(eq.id))}
+                      >
                         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-1.5">
                           {eqs.map(eq => (
                             <EQCard key={eq.id} eq={eq} inChain={chainIds.has(eq.id)} onAdd={(e) => onAddInsert({ type: 'equalizer', item: e })} perspective={perspective} />
                           ))}
                         </div>
-                      </div>
+                      </GroupAccordion>
                     ))}
                   </>
                 )}
@@ -466,14 +585,19 @@ export default function PatchbayView({
                       FX unit outputs normal → Tonelux OTB 16xh → sums → API Mix B insert return
                     </div>
                     {Array.from(fxGroups.entries()).map(([label, procs]) => (
-                      <div key={label}>
-                        <div className="text-[10px] tracking-wide text-zinc-500 uppercase mb-1.5">{label}</div>
+                      <GroupAccordion
+                        key={label}
+                        title={label}
+                        count={procs.length}
+                        summary={procs.some((proc) => chainIds.has(proc.id)) ? 'Contains selected insert' : undefined}
+                        defaultOpen={procs.some((proc) => chainIds.has(proc.id))}
+                      >
                         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-1.5">
                           {procs.map(proc => (
                             <OutboardCard key={proc.id} proc={proc} inChain={chainIds.has(proc.id)} onAdd={(p) => onAddInsert({ type: 'outboard', item: p })} perspective={perspective} />
                           ))}
                         </div>
-                      </div>
+                      </GroupAccordion>
                     ))}
                   </>
                 )}
