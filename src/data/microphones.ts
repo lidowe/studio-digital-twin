@@ -18,6 +18,9 @@ export const microphones: Microphone[] = [
     heritage: 'Historically accurate reproduction of the early long-body Neumann U47 (1949–1952 era). M7-style capsule by Siegfried Thiersch (ex-Neumann Berlin), precision-milled in Switzerland. Designed by Mike Castoro, Wunder Audio, Austin TX.',
     character: 'Rich, three-dimensional tube tone with dense midrange weight and a silky, never-harsh top end. The M7 capsule delivers that mythical U47 combination of warmth and presence — vocals sit with both authority and intimacy. Natural transient compression makes everything sound expensive.',
     engineering: 'External HV PSU runs NOS Telefunken 800-series glass pentode (EF14 derivative). 8-position M49-style pattern select via PSU + internal cardioid relay. NICO-wound output transformer (user\'s unit). Triple-gauge headbasket acts as Faraday cage, critical to tonal signature. Mundorf Silver Gold Oil coupling cap. 200Ω output.',
+    tendencies: ['dense lower-mid authority', 'silky top without obvious edge', 'natural-feeling transient restraint', 'strong sense of depth and scale'],
+    tradeoffs: ['external PSU increases setup complexity', 'tube weight can over-thicken already dark sources', 'less useful when absolute neutrality is the goal'],
+    workflow_implications: ['rewarding when a source needs instant record-like gravitas', 'worth reserving for featured sources rather than general utility duty', 'pattern and PSU handling make it slower to reposition than simpler condensers'],
     best_for: ['vocals', 'piano', 'strings', 'room ambience', 'acoustic guitar'],
   },
   {
@@ -34,6 +37,9 @@ export const microphones: Microphone[] = [
     heritage: 'Modern recreation of the AKG/Telefunken ELA M 251E (1959). CK12-style edge-terminated capsule (TK51), Haufe T31 output transformer, 6072A tube. Designed by Toni Fishman, hand-assembled in Connecticut.',
     character: 'The hallmark 251 "air" — extended, shimmering top end floating above the mix without harshness. Midrange is smooth with lifelike vocal nuance. Bottom end balanced, never boomy. Where the CM7 adds weight, the TF51 adds openness and dimension.',
     engineering: 'TK51 CK12-style edge-terminated capsule paired with 6072A tube and Haufe T31 output transformer. External M 903 PSU provides HV for tube + capsule polarization. Three fixed patterns via PSU switch. <300Ω output. 128dB max SPL, 8dBA self-noise.',
+    tendencies: ['airy upper register', 'open spatial presentation', 'smooth vocal nuance', 'balanced low end without obvious bloom'],
+    tradeoffs: ['extra air can expose sibilance or brittle arrangements', 'external PSU adds another setup dependency', 'less naturally weighty than thicker tube designs'],
+    workflow_implications: ['useful when a source needs lift and openness before EQ', 'good contrast option beside heavier tube microphones', 'works best when the rest of the chain can preserve its top-end subtlety'],
     best_for: ['vocals', 'acoustic guitar', 'violin', 'strings', 'drum overheads', 'piano'],
   },
 
@@ -54,6 +60,9 @@ export const microphones: Microphone[] = [
     heritage: 'Clone of the Neumann U87 (1967). Early production "Red Badge" with Heisermann K67-style capsule. Manufactured by Stam Audio Engineering, São Paulo, Brazil.',
     character: 'The general U87 family sound — forward upper midrange presence giving vocals cut and authority. However, the Heisermann capsule tends brighter and more open than a genuine U87, with less controlled "darkness." Slightly more hi-fi and forward. Sibilance may be more pronounced on bright vocalists.',
     engineering: 'FET amplifier circuit modeled on Neumann U87 topology with transformer-coupled output. Heisermann K67-style capsule doesn\'t perfectly replicate Neumann backplate geometry or diaphragm tension — expect different response in 8–12kHz region. Early Red Badge production had more unit-to-unit variation. 200Ω output, 48V phantom.',
+    tendencies: ['forward presence region', 'assertive vocal cut', 'brighter top than darker U87 variants', 'hi-fi immediacy over softness'],
+    tradeoffs: ['can spotlight sibilance on already bright voices', 'less forgiving than smoother large-diaphragm choices', 'unit variation matters more than later refined versions'],
+    workflow_implications: ['useful when a source needs to sit forward quickly', 'worth comparing directly against smoother alternatives before committing', 'engineers may need to manage upper-mid energy earlier in the chain'],
     best_for: ['vocals', 'voiceover', 'guitar cab', 'piano', 'acoustic guitar'],
   },
   {
@@ -70,6 +79,9 @@ export const microphones: Microphone[] = [
     heritage: 'Later evolution of the Stam SA-87 with upgraded Braingasm K-87 capsule. Same Neumann U87 (1967) lineage but refined manufacturing. Having both Red and Black Badge is educational — demonstrates how capsule differences affect character when circuit topology is identical.',
     character: 'Fuller and warmer than the Red Badge, with denser midrange body and more controlled sibilance. The Braingasm K-87 capsule is a more refined K67 recreation — smoother upper midrange, less spitty. Overall thicker, slightly darker, more forgiving on bright sources. Closer to the real U87 experience.',
     engineering: 'Same FET/transformer topology as Red Badge. Braingasm K-87 capsule has tighter manufacturing tolerances, closer to original K67 backplate geometry. "i" suffix and Black Badge designation indicate later production with improved QC. Interchangeable in signal chain terms (same impedance, same gain requirements).',
+    tendencies: ['fuller midrange body', 'more controlled sibilance than the Red Badge', 'slightly darker tilt', 'forgiving upper-mid behavior'],
+    tradeoffs: ['less sparkling than brighter U87-style options', 'still brings a recognizable presence contour rather than pure neutrality', 'can sound a touch thick on already dense sources'],
+    workflow_implications: ['a safer first-call U87-style option when brightness is uncertain', 'useful A/B partner against the Red Badge to show capsule influence', 'often reduces the need for early de-essing compared with brighter variants'],
     best_for: ['vocals', 'voiceover', 'acoustic guitar', 'strings', 'piano', 'room mic'],
   },
   {
@@ -86,6 +98,9 @@ export const microphones: Microphone[] = [
     heritage: 'Inspired by the Neumann U47 FET (1972), the solid-state successor to the legendary tube U47. Bill Putnam\'s legacy company lineage (Universal Audio → United Recording → UREI). K47-style capsule, transformer-coupled.',
     character: 'The U47 FET warmth and weight in solid-state form. Thick full low end, smooth midrange, gently rolled top compared to U87-types. The "warm blanket" sound — less presence peak, more body and mass. Vocals sound intimate and substantial; kick drum and bass get chest-thumping authority.',
     engineering: 'FET amplifier with transformer-coupled output. K47-style large-diaphragm capsule. Design emphasizes SPL handling (~147dB) and low-end authority. Fixed cardioid pattern. 200Ω output, 48V phantom.',
+    tendencies: ['strong low-end mass', 'smooth midrange density', 'less aggressive presence than U87-style designs', 'high-SPL confidence'],
+    tradeoffs: ['can feel too heavy on already thick material', 'reduced top-end openness relative to brighter condensers', 'fixed cardioid limits pattern flexibility'],
+    workflow_implications: ['good when impact and body matter more than airy detail', 'often simplifies kick or bass capture choices', 'benefits from comparison against leaner microphones on dense arrangements'],
     best_for: ['kick drum', 'bass cab', 'floor tom', 'male vocals', 'voiceover', 'trombone', 'piano'],
   },
   {
@@ -102,6 +117,9 @@ export const microphones: Microphone[] = [
     heritage: 'Sony\'s first new studio mic in 25 years (2017). Dual-capsule hi-res system: 25mm LDC + 17mm electret extending to 50kHz. Developed over 3 years with Sony Music. Sony\'s mic heritage includes the legendary C-37A (1958) and C-800G.',
     character: 'Breathtakingly detailed and transparent — a truth-telling microphone. The dual-capsule system creates an almost uncanny sense of air and realism you feel as much as hear. Neutral and honest — no added warmth or color. Sounds like being in the room, not listening through a mic.',
     engineering: 'Novel dual-capsule: 25mm single-backplate electret LDC (≤25kHz) + 17mm electret (25–50kHz). At 44.1/48kHz the HF capsule contributes almost nothing — only at 96kHz+ does it become relevant. Transformerless output at 90Ω — virtually zero preamp interaction. Multi-pattern. 131dB max SPL, 18dBA self-noise.',
+    tendencies: ['very high perceived detail', 'minimal electrical coloration from preamp loading', 'neutral tonality', 'spacious realism when the source and room support it'],
+    tradeoffs: ['reveals flaws instead of flattering them', 'high-resolution promise matters less at standard sample rates', 'can feel clinically honest if the source needs romance'],
+    workflow_implications: ['useful when the goal is capture fidelity rather than editorial tone', 'pair with a chain that will not obscure fine detail', 'works best when the room and performer are already delivering what you want'],
     best_for: ['orchestral', 'piano', 'vocals', 'acoustic instruments', 'high-res recording', 'reference'],
   },
   {
@@ -118,6 +136,9 @@ export const microphones: Microphone[] = [
     heritage: 'Designed by Audix, Wilsonville OR. 25mm true condenser in compact "lollipop" form factor. SCX-25 introduced ~2002, revised to SCX25A ~2005 with improved LF response. Won PSW Reader\'s Choice Award 2010.',
     character: 'Smooth, natural, and musical with gentle warmth flattering acoustic instruments without coloring. The 25mm capsule gives a more focused, immediate texture than typical 1-inch LDCs. Exceptionally low 14dBA self-noise makes it remarkable on quiet sources. Piano engineers consistently praise this mic.',
     engineering: 'Side-address LDC in compact form (21mm body, 148mm long) — small body minimizes diffraction. True condenser (externally polarized, NOT electret). Center-terminated 25mm capsule. Transformerless FET amplifier. Matched pair within 1dB sensitivity and frequency response. No pad or filter on body. 135dB max SPL.',
+    tendencies: ['smooth natural tonality', 'focused immediacy without obvious hype', 'quiet enough for subtle material', 'less body-diffraction than larger side-address shapes'],
+    tradeoffs: ['fewer onboard controls than more utility-oriented condensers', 'less overt personality if you want obvious attitude', 'fixed cardioid limits room-shape options'],
+    workflow_implications: ['strong candidate when quiet acoustic detail matters', 'compact form makes piano and tighter placements easier', 'often useful as a dependable stereo pair when consistency matters more than hype'],
     best_for: ['piano', 'acoustic guitar', 'strings', 'choir', 'room capture', 'stereo pair recording'],
   },
   {
@@ -134,6 +155,9 @@ export const microphones: Microphone[] = [
     heritage: 'Founded by David Blackmer (1927–2002), who also created dbx and pioneered the VCA compressor. "Sounds like life" philosophy centered on time-domain accuracy. Ethos (2022) applies measurement-grade precision to a broadcast vocal form. Won iF Design Award 2023.',
     character: 'Uncolored, transparent, and almost eerily honest — captures your voice the way it actually sounds with no flattering hype or warming coloration. The ultra-fast 11.67µs rise time creates immediacy and "being there" presence fundamentally different from typical LDC sound.',
     engineering: 'Transformerless, phase-coherent design achieving 11.67µs rise time. Supercardioid pattern (NOT cardioid) with null points at ~125°. ~100Ω output provides excellent cable drive. Stainless steel body provides mass damping and RF shielding. Integrated foam pop filter handles plosives.',
+    tendencies: ['extreme immediacy', 'very low editorial coloration', 'fast transient behavior', 'high intelligibility from a close position'],
+    tradeoffs: ['little forgiveness for weak source tone or mic technique', 'supercardioid pickup is less casual than standard cardioid', 'can feel stark if a performer expects flattering bloom'],
+    workflow_implications: ['works best when honesty and articulation outrank romance', 'placement discipline matters because the mic hears technique clearly', 'useful when spoken word or exposed vocals need intelligibility without hype'],
     best_for: ['vocals', 'podcasting', 'acoustic instruments', 'reference recording', 'spoken word'],
   },
   {
@@ -150,6 +174,9 @@ export const microphones: Microphone[] = [
     heritage: 'Originally released early 1990s, revolutionary for breaking the $1,000 barrier. The "a" suffix = updated shock mount (AT8449a). A Nashville studio staple, particularly in bluegrass and acoustic music communities. 11.5mm capsule makes it technically medium-diaphragm despite large body.',
     character: 'Strong up-front presence is the defining trait — puts vocals right in your face with confident, assertive clarity. Pronounced presence peak adds cut without harshness. Bass controlled and clean, transient response exceptionally fast thanks to the small capsule. Nashville bluegrass secret weapon for picked acoustic instrument snap and attack.',
     engineering: 'Electret condenser with surprisingly small 11.5mm, 2-micron diaphragm — small capsule in large side-address body is key to fast transient response. Symmetrical transformerless FET circuitry. Precision-machined nickel-plated brass baffle. 80Hz HPF switchable. 145dB max SPL, 17dBA self-noise. Five-step capsule aging process.',
+    tendencies: ['assertive presence', 'fast attack definition', 'controlled low end', 'clear forward articulation'],
+    tradeoffs: ['presence contour can become pushy on already bright sources', 'less plush than fuller large-diaphragm microphones', 'electret voice is more direct than romantic'],
+    workflow_implications: ['useful when a source needs cut and definition without much extra shaping', 'often rewards players with strong articulation', 'engineers may need less HF boost but more care around forwardness'],
     best_for: ['vocals', 'acoustic guitar', 'banjo', 'mandolin', 'fiddle', 'snare drum', 'guitar cab'],
   },
 
@@ -170,6 +197,9 @@ export const microphones: Microphone[] = [
     heritage: 'Beyerdynamic (Heilbronn, Germany, founded 1924). MC930 introduced 2002 at AES Munich as part of MC900 series. Beyerdynamic\'s core reputation is headphones and broadcast dynamics — their SDC line is less known but highly respected.',
     character: 'One of the sweetest-sounding SDCs available. Particularly beautiful on picked guitar. More refined and delicate than a C451 or SM81. Presence peak above 10kHz adds sparkle without harshness. Natural and musical, not clinical.',
     engineering: 'Externally biased true condenser (NOT electret) with transformerless output at 180Ω. Sintered metal nose cover replaces wire mesh — diaphragm mounts closer to body end, reducing diffraction. At 30mV/Pa, significantly hotter than most SDCs. -15dB pad, -6dB/oct @ 250Hz HPF. 140dB max SPL.',
+    tendencies: ['sweet top-end sparkle', 'refined picked-transient detail', 'musical rather than clinical presentation'],
+    tradeoffs: ['less bluntly neutral than stricter reference SDCs', 'can feel delicate when a harder-edged sound is wanted', 'single unit limits stereo options'],
+    workflow_implications: ['worth reaching for when acoustic detail needs polish without hype', 'hot output means less gain pressure than many SDCs', 'good contrast check against brighter AKG-style pencils'],
     best_for: ['acoustic guitar', 'hi-hat', 'percussion', 'strings', 'piano', 'choir'],
   },
   {
@@ -186,6 +216,9 @@ export const microphones: Microphone[] = [
     heritage: 'Introduced 1978, unchanged since. One of the most-recorded SDCs in history. Part of Shure\'s legendary SM line. Set the standard for flat-response SDCs. 85Ω output is the lowest of any conventional microphone.',
     character: 'The reference "accurate SDC" — sounds like what\'s in front of it. Low end extends deeper than most SDCs, giving body without color. Highs detailed but not hyped. Deep, lush, and articulate. If the C451 is champagne, the SM81 is fine single malt — richer, warmer, more grounded.',
     engineering: 'True condenser, transformer-coupled at remarkable 85Ω — essentially immune to cable capacitance. Run 100+ foot cables with no HF degradation. Low RF susceptibility. Operates 11–52V phantom. Three-position HPF (flat/-6dB/-18dB/oct). Lockable -10dB pad. Rugged steel construction. 146dB max SPL.',
+    tendencies: ['flat honest tonality', 'deeper low-end body than many pencils', 'steady off-axis realism'],
+    tradeoffs: ['less instant sparkle than brighter SDC classics', 'needs more gain than hotter condensers', 'can seem restrained when a source needs extra edge'],
+    workflow_implications: ['useful baseline mic when you want the source and room to dominate', 'excellent on long cable runs or uncertain RF environments', 'filter and pad options make placement changes easier than many fixed SDCs'],
     best_for: ['acoustic guitar', 'hi-hat', 'drum overheads', 'strings', 'piano', 'percussion', 'choir', 'reference recording'],
   },
   {
@@ -202,6 +235,9 @@ export const microphones: Microphone[] = [
     heritage: 'Introduced 1969, discontinued 1993. AKG\'s first FET condenser. CK1 true condenser capsule — the modular CMS system accepted 10+ capsules. Defined the modern SDC category. Vintage CK1 capsules are irreplaceable NOS items.',
     character: 'THE quintessential "crispy" SDC. CK1 capsule is legendary for sparkling, detailed treble with distinct brightness above 10kHz. Transients fast and snappy. Acoustic guitars shimmer, hi-hats sizzle with articulation. Vintage CK1 units have a lively, airy organic "snap" the modern C451B doesn\'t replicate.',
     engineering: 'True condenser (externally biased) CK1 capsule with tight manufacturing tolerances. Modular CMS system — threads wear and capsules loosen over time. ⚠️ 50+ year old CK1 capsules may have shifted tension or developed noise. "e" = XLR output. 120dB max SPL (body). 9–52V phantom.',
+    tendencies: ['sparkling vintage brightness', 'fast snappy transient shape', 'airy articulation with obvious personality'],
+    tradeoffs: ['older capsules can be noisy or inconsistent', 'brightness can turn brittle quickly', 'less forgiving than fuller SDC options'],
+    workflow_implications: ['strong choice when a part needs shimmer before EQ', 'worth checking condition and noise before committing critical takes', 'best used deliberately rather than as a neutral default'],
     best_for: ['acoustic guitar', 'hi-hat', 'drum overheads', 'percussion', 'strings', 'piano', 'mandolin'],
   },
   {
@@ -218,6 +254,9 @@ export const microphones: Microphone[] = [
     heritage: 'Modern reissue of C451/CK1 (2001). TEC Award nominated 2002. Fixed integral electret capsule replaces modular CMS system. AKG claims "identical acoustics" — widely debated. Having both C451e and C451B illustrates how capsule technology affects character.',
     character: 'Similar family voicing — bright, detailed, excellent on transients — but perceptibly less "alive" and "special" than vintage CK1. More consistent unit-to-unit, making matched pairs more trustworthy for stereo. The -20dB pad yielding 155dB SPL handling means you can mic virtually anything without fear.',
     engineering: 'Fixed integral 3-micron gold-sputtered electret capsule (vs. original CK1 true condenser). Redesigned transformerless output electronics. Three-position pad (0/-10/-20dB) and three-position HPF. 155dB max SPL with -20dB pad. 18dBA self-noise. 9–52V phantom.',
+    tendencies: ['bright transient-led capture', 'more consistent stereo behavior than vintage pairs', 'modern utility with AKG-family bite'],
+    tradeoffs: ['less magic and complexity than older CK1 examples', 'still easy to over-brighten sharp sources', 'electret presentation is more practical than romantic'],
+    workflow_implications: ['reliable pair when you need predictable stereo matching', 'pad and HPF make it easy to place on loud sources quickly', 'good comparison point against the vintage C451e when deciding between reliability and charm'],
     best_for: ['drum overheads', 'hi-hat', 'acoustic guitar', 'percussion', 'close-miking loud sources', 'snare overhead'],
   },
   {
@@ -234,6 +273,9 @@ export const microphones: Microphone[] = [
     heritage: 'EV (Buchanan MI, founded 1927). Part of the RE series alongside legendary RE20 and RE55. Pragmatic design — condenser voiced to sound useful with minimal processing. Discontinued but available NOS.',
     character: 'NOT a neutral mic — deliberate "Continuous Presence Rise" with bass rolloff from 300Hz, sharp peaks at 5kHz and 8kHz (+10–12dB), steep rolloff above 13kHz. Think built-in EQ pre-optimized for percussion and hi-hat. On cymbals, it adds snap and definition without processing.',
     engineering: 'True condenser (externally biased despite 12V phantom operation) with ultra-thin gold-laminated diaphragm on precision ceramic disc electrode. Internal DC-DC converter maintains stable capsule polarization 12–52V — performance identical regardless of phantom supply. Transformerless. No pad or HPF. 130dB max SPL.',
+    tendencies: ['pre-shaped presence and snap', 'lean low-mid profile', 'mix-ready cymbal articulation'],
+    tradeoffs: ['not a neutral source documenter', 'built-in contour can feel narrow outside its sweet spot', 'limited controls reduce rescue options at the mic'],
+    workflow_implications: ['helpful when you want attack and definition without later EQ work', 'best treated as a deliberate color mic, not a universal pencil', 'quickly reveals whether a source benefits from its strong voicing'],
     best_for: ['hi-hat', 'drum overheads', 'acoustic guitar', 'strings', 'percussion', 'ride cymbal'],
   },
   {
@@ -250,6 +292,9 @@ export const microphones: Microphone[] = [
     heritage: 'Peavey Electronics (Meridian MS, founded 1965). PVM series (1990s) was their entry into pro studio mics. The PVM 480 got buried under AKG/Shure/Neumann branding but was a legitimate studio tool. Collector-level obscure.',
     character: 'Genuinely underrated SDC that consistently surprises engineers without brand prejudice. Clean, detailed, smoother than expected. Less personality than a C451 but more musical than utility-grade. Disappears into the recording — doesn\'t impose character, just works.',
     engineering: 'Small-diaphragm FET condenser with true condenser capsule. Standard phantom power. Build quality solid — Peavey\'s manufacturing expertise from PA/live sound. Technical documentation scarce — Peavey focused marketing on live sound and guitar amps.',
+    tendencies: ['clean unobtrusive detail', 'smoother than many budget pencils', 'easy-to-place utility behavior'],
+    tradeoffs: ['limited documentation makes edge-case planning harder', 'less memorable personality than more iconic SDCs', 'obscurity can make pair-matching assumptions risky'],
+    workflow_implications: ['useful when you need a dependable mic that stays out of the way', 'worth auditioning before assuming it is merely backup inventory', 'good practical option where you would rather solve placement than tonal hype'],
     best_for: ['drum overheads', 'acoustic guitar', 'hi-hat', 'percussion', 'stereo pair'],
   },
 
@@ -270,6 +315,9 @@ export const microphones: Microphone[] = [
     heritage: 'Designed by BBC Engineering Division, manufactured by STC/Coles since 1956. Standard BBC broadcast mic for decades. Abbey Road sessions, Beatles recordings. Design unchanged for nearly 70 years.',
     character: 'Thick, warm, almost velvety quality — vocals and brass sound like they\'re heard in a beautiful room, not through a mic. Natural darkness on top that is never harsh, with addictive midrange weight making everything sound expensive and classic. BBC-broadcast smoothness.',
     engineering: '37×25mm corrugated aluminum ribbon element, ~0.6µm thick, in powerful Alnico magnet assembly. High-quality steel-laminate output transformer at 300Ω. ⚠️ Very sensitive to preamp input Z — loading below 1.2kΩ audibly thins bass and reduces output. Perfect null at 90°. Extremely sensitive to wind/plosives.',
+    tendencies: ['velvety midrange weight', 'soft dark top-end behavior', 'strong room-like depth when placed well'],
+    tradeoffs: ['needs careful wind and plosive protection', 'insufficient preamp impedance can thin it dramatically', 'less suited to sources needing obvious top-end bite'],
+    workflow_implications: ['pair with a high-gain, high-impedance preamp before judging the mic', 'placement discipline matters because the figure-8 hears the room strongly', 'worth reserving for sources that benefit from density rather than sparkle'],
     best_for: ['drum overheads', 'brass', 'strings', 'vocals', 'guitar cab', 'room ambience'],
   },
   {
@@ -286,6 +334,9 @@ export const microphones: Microphone[] = [
     heritage: 'Cascade Microphones (Olympia WA), founded by Michael Chiriac. Made Chinese-manufactured ribbons accessible to project studios mid-2000s. Lundahl LL2912 upgrade path championed by DIY community, later offered as factory option.',
     character: 'Surprisingly open and detailed for a budget ribbon — bright enough to sit in a mix without being buried. Smooth midrange handles guitar amps beautifully. With Lundahl LL2912 upgrade: more refined, silky character, starts approaching mics costing 5–10× more. Best bang-for-buck ribbon available.',
     engineering: 'Long-geometry aluminum ribbon (~2µm thick, 47mm long) in neodymium magnet motor. Stock transformer adequate but constrained in LF saturation. Lundahl LL2912 (Swedish nickel-core) dramatically improves transient response, lowers distortion, changes impedance curve, reduces preamp sensitivity. Figure-8 with good null depth.',
+    tendencies: ['open-for-a-ribbon top end', 'smooth guitar-amp midrange', 'surprisingly mix-friendly detail'],
+    tradeoffs: ['stock transformer can bottleneck low-end authority', 'still needs ribbon-safe handling habits', 'not as inherently luxurious as top-tier ribbons'],
+    workflow_implications: ['strong value option when you want ribbon behavior without saving it only for prestige sessions', 'transformer version materially changes how the mic behaves in practice', 'good candidate for figure-8 experiments on amps and room capture'],
     best_for: ['guitar amps', 'drum overheads', 'brass', 'voiceover', 'Blumlein stereo', 'percussion'],
   },
   {
@@ -302,6 +353,9 @@ export const microphones: Microphone[] = [
     heritage: 'One of the most obscure ribbon mics from a major manufacturer. PVM series branding disguises a genuine ribbon. Flew completely under the radar — categorized in the "PVM dynamic" line rather than marketed as a ribbon.',
     character: 'Genuine ribbon warmth and smoothness despite PVM dynamic branding. Natural, unforced top end that won\'t tire your ears. Darker and silkier than any dynamic, with pleasantly vintage quality. A hidden ribbon gem in a dynamic mic\'s clothing.',
     engineering: 'Thin aluminum ribbon element in permanent magnet assembly with output transformer at ~300Ω. ⚠️ Phantom power is a potential hazard — transformer-isolated phantom shouldn\'t damage ribbon but best to avoid entirely. Preamp input Z should be ≥1.5kΩ for optimal frequency response. Figure-8 pattern inherent to ribbon design.',
+    tendencies: ['silky top without dynamic-style bite', 'vintage-leaning warmth', 'more relaxed transient presentation than moving-coil options'],
+    tradeoffs: ['easy to mis-handle if treated like an ordinary stage mic', 'lower output and impedance sensitivity narrow preamp choices', 'darker tone can disappear on already-muted sources'],
+    workflow_implications: ['worth remembering as a true ribbon despite its misleading series name', 'keep phantom discipline strict around it', 'useful when a source wants softer edges than nearby dynamics provide'],
     best_for: ['guitar amps', 'brass', 'drum overheads', 'vocals'],
   },
 
@@ -322,6 +376,9 @@ export const microphones: Microphone[] = [
     heritage: 'Introduced 1966, continuously manufactured since. Broadcast standard across European radio/TV for decades. Used by NASA, BBC. Acoustic labyrinth design was revolutionary — often called "the best dynamic mic ever made."',
     character: 'The Swiss Army knife of dynamics — almost condenser-like clarity and openness completely atypical for a dynamic. Top end extends well beyond most dynamics with sophisticated presence that never turns shrill. 5-position bass rolloff makes it instantly adaptable — full on floor toms, tight on snare, articulate on vocals.',
     engineering: 'Double-diaphragm interference tube design with internal acoustic labyrinth achieving supercardioid directivity maintaining pattern shape from 200Hz–15kHz — extraordinary for a dynamic. 5-position bass switch via acoustic damping chambers (not electronic filtering). Humbucking coil for excellent EMI rejection. 2-position presence boost (~+3dB @ 5–6kHz).',
+    tendencies: ['dynamic with unusual openness and precision', 'adaptable low-end behavior from onboard filtering', 'excellent isolation without sounding choked'],
+    tradeoffs: ['needs real gain despite its refined presentation', 'form factor is less casual than stubby stage dynamics', 'premium utility can be wasted on jobs a simpler mic could cover'],
+    workflow_implications: ['strong first-call problem solver when you want one dynamic to cover many roles', 'switches make it faster to tune at the mic than most moving-coil options', 'worth trying before defaulting to a condenser on sources that need rejection'],
     best_for: ['broadcast vocals', 'toms', 'snare', 'guitar amps', 'saxophone', 'spoken word', 'podcast'],
   },
   {
@@ -338,6 +395,9 @@ export const microphones: Microphone[] = [
     heritage: 'Part of Sennheiser\'s Black Fire series (late 1970s–80s). Designed as professional stage and studio dynamics. Relatively obscure today, overshadowed by MD 421 and MD 441, but well-regarded in European pro audio.',
     character: 'Punchy, forward midrange that sits well in dense mixes — slightly leaner and more focused than SM57-style, with Sennheiser clarity in upper mids. Direct quality makes it excellent for live and close-miking, with controlled proximity effect.',
     engineering: 'Moving-coil capsule with proprietary Sennheiser diaphragm treatment. "Black Fire" designation refers to matte black housing and refined capsule damping. 200Ω output. Integrated XLR connector. Robust stage-ready construction.',
+    tendencies: ['forward mix-cutting midrange', 'lean focused close-mic tone', 'stage-friendly directness'],
+    tradeoffs: ['less full-bodied than larger Sennheiser dynamics', 'obscure model means fewer familiar reference points', 'can feel plain when a source needs more dimension'],
+    workflow_implications: ['useful utility option when you need definition without much setup drama', 'good alternate voice beside SM57-family mics for tighter mid focus', 'worth keeping in the close-mic rotation rather than treating as archival oddity'],
     best_for: ['vocals', 'instrument miking', 'snare', 'percussion', 'guitar amps'],
   },
   {
@@ -354,6 +414,9 @@ export const microphones: Microphone[] = [
     heritage: 'Supercardioid variant of the Black Fire series. Designed for maximum isolation in demanding stage/broadcast environments. Increasingly collected as vintage Sennheiser dynamics.',
     character: 'Tighter and more directional than the 521 — focused "spotlight" quality isolating the source with surgical precision. Dry, present sound even in noisy environments. Tonally leaner with more bite in upper mids.',
     engineering: 'Supercardioid pattern provides ~10dB rejection at 120° off-axis with rear lobe at 180°. Capsule optimized for close-miking with controlled proximity effect. Shares Black Fire series robust metal construction. 200Ω output.',
+    tendencies: ['tight spotlight isolation', 'dry close-mic presence', 'leaner upper-mid bite than broader cardioids'],
+    tradeoffs: ['less forgiving placement window than the 521', 'rear lobe needs attention in loud setups', 'can sound austere if you want body over focus'],
+    workflow_implications: ['best used where bleed control matters more than size or softness', 'monitor and room placement matter because the pattern is less casual', 'good choice when dense setups need a narrow target'],
     best_for: ['high-SPL instrument miking', 'live vocals', 'close-miking drums', 'brass'],
   },
   {
@@ -370,6 +433,9 @@ export const microphones: Microphone[] = [
     heritage: 'Introduced 1968, successor to RE15. Variable-D technology patented by EV remains unique to their line. Default US broadcast mic — if you\'ve heard a radio DJ in America, you\'ve likely heard an RE20. Design unchanged 55+ years.',
     character: 'The definition of "smooth authority" — deep, full, broadcast-ready. Bottom end rumbles without blooming, top end present without aggression. Virtually no proximity effect, so sound stays consistent 1 inch to 6 inches. Warm, authoritative quality flattering male voices especially. Round, full-bodied kick drum punch.',
     engineering: 'Variable-D technology: rear of capsule ported through multiple slots of varying acoustic path length, canceling proximity effect. Large-diaphragm dynamic, heavy magnet (726g total). Internal pop filter (foam + steel mesh). Bass rolloff switch (~400Hz, gentle slope). 150Ω output.',
+    tendencies: ['stable tone across distance changes', 'smooth low-end authority', 'broadcast-ready fullness without hype'],
+    tradeoffs: ['large body can complicate cramped placement', 'less bitey than some modern voiced dynamics', 'weight and size make casual repositioning slower'],
+    workflow_implications: ['useful when performer movement makes proximity effect a problem', 'excellent anchor choice for voice and kick when consistency matters', 'often reduces corrective EQ because the tonal balance stays controlled'],
     best_for: ['broadcast vocals', 'kick drum', 'bass cab', 'trombone', 'voiceover', 'podcasting'],
   },
   {
@@ -386,6 +452,9 @@ export const microphones: Microphone[] = [
     heritage: 'EV\'s "Performance Line" (1980s) — stage-oriented dynamics. EV\'s answer to Shure SM dominance in the live sound market.',
     character: 'Workhorse dynamic with strong, assertive midrange — punchy and forward, cutting through without a lot of EQ help. Moderate proximity warmth for close-miking. Not as refined as RE20 but more than capable.',
     engineering: 'Standard moving-coil element in cardioid configuration. Solid but utilitarian construction compared to N/Dym or RE series. 150Ω output.',
+    tendencies: ['assertive midrange punch', 'straightforward stage-style voicing', 'helpful proximity warmth up close'],
+    tradeoffs: ['less nuanced than EV\'s better-known broadcast models', 'limited personality beyond workhorse competence', 'can sound blunt on sources wanting more openness'],
+    workflow_implications: ['useful utility dynamic when you need cut quickly', 'good fallback for live-style close miking without precious handling', 'unlikely to be the hero mic, but rarely a disastrous choice'],
     best_for: ['general instrument miking', 'live vocals', 'toms', 'guitar amps'],
   },
   // ── EV N/D Series ──
@@ -403,6 +472,9 @@ export const microphones: Microphone[] = [
     heritage: 'EV\'s flagship vocal dynamic, mid-1990s. N/DYM (neodymium) magnet technology was a genuine innovation influencing the entire dynamic mic industry.',
     character: 'Bright, open, articulate — top end almost sparkles like a condenser. Forward, aggressive presence cuts through a loud band. Low end controlled and tight, not boomy.',
     engineering: 'N/DYM neodymium magnet for higher sensitivity and extended response. Supercardioid with ~15dB rejection at 150°. VOB (Voice Optimized Bass) filter reduces LF handling noise/proximity. Warm Grip handle. 150Ω output.',
+    tendencies: ['condenser-leaning vocal clarity', 'tight low-end control', 'aggressive live-cut presence'],
+    tradeoffs: ['can edge into harshness on bright voices', 'supercardioid pattern is less forgiving on stage', 'less warm than smoother vocal dynamics'],
+    workflow_implications: ['good when a vocal must cut through dense stage volume', 'monitor placement matters more than with cardioid vocal mics', 'often reduces the need for added presence EQ'],
     best_for: ['live lead vocals', 'backing vocals'],
   },
   {
@@ -419,6 +491,9 @@ export const microphones: Microphone[] = [
     heritage: 'EV\'s tuned kick drum specialist from the N/DYM series. Answer to AKG D112 and Shure Beta 52A.',
     character: 'Bass-drum specialist with huge, subterranean low end and focused click in attack range. Delivers modern, scooped kick sound right off the capsule — deep thump with cutting beater attack. Devastating at its intended job.',
     engineering: 'Large diaphragm tuned for extended LF response with N/DYM neodymium magnet. Capsule voiced with broad midrange scoop and narrow presence peak for "point and shoot" kick drum tone. High SPL handling. 20Hz–10kHz response. 150Ω output.',
+    tendencies: ['huge sculpted low end', 'built-in kick click definition', 'modern pre-shaped drum tone'],
+    tradeoffs: ['narrower usefulness outside kick-centric jobs', 'scooped voicing can feel one-dimensional', 'less suitable when you want natural shell midrange'],
+    workflow_implications: ['fast choice for modern kick sounds with minimal processing', 'best treated as a specialist rather than a general low-frequency mic', 'easy to compare against flatter kick options when deciding how much built-in contour you want'],
     best_for: ['kick drum', 'floor tom', 'bass cab'],
   },
   {
@@ -435,6 +510,9 @@ export const microphones: Microphone[] = [
     heritage: 'Mid-tier N/DYM vocal mic. "a" revision improved shock mounting and frequency response over original N/D767.',
     character: 'Versatile vocal dynamic — brighter and more open than SM58, smoother presence than 967. Nice middle ground — warmth of SM58 with extra openness toward Beta 58A territory.',
     engineering: 'N/DYM neodymium magnet. "a" suffix = revision with improved internal shock mount and refined response. Supercardioid. 50Hz–19kHz. 150Ω output.',
+    tendencies: ['balanced live-vocal openness', 'more air than classic stage standards', 'middle-ground voicing between warmth and cut'],
+    tradeoffs: ['does not isolate as aggressively as the 967 in loudest contexts', 'supercardioid still narrows monitor choices', 'less iconic personality than more extreme vocal mics'],
+    workflow_implications: ['good all-round vocal option when you need more clarity than an SM58 without going fully bright', 'sensible compromise mic for mixed-use live and studio utility', 'easy handoff choice when different singers need different amounts of edge'],
     best_for: ['live vocals', 'acoustic instruments', 'instrument miking'],
   },
   {
@@ -451,6 +529,9 @@ export const microphones: Microphone[] = [
     heritage: 'Instrument workhorse of the N/DYM series. Particularly popular in the drum miking community as alternative to SM57.',
     character: 'Aggressive, brighter instrument dynamic — snappy and cutting on snare and toms. Cuts through a mix extremely well with pronounced presence peak suited to drum miking.',
     engineering: 'N/DYM neodymium with capsule tuned for pronounced presence peak (5–8kHz). Supercardioid provides excellent rejection for close-miking tightly spaced sources. 70Hz–18kHz. 150Ω output.',
+    tendencies: ['snappy drum attack emphasis', 'strong mix-cutting presence', 'tight rejection for crowded setups'],
+    tradeoffs: ['presence peak can become hard or papery', 'less neutral than broader instrument dynamics', 'narrow pattern increases placement sensitivity'],
+    workflow_implications: ['useful when drums need extra attack without much EQ', 'good alternative to SM57-family mics for tighter rejection', 'worth backing off if a source already has plenty of upper-mid aggression'],
     best_for: ['snare drum', 'toms', 'percussion', 'guitar amps'],
   },
   {
@@ -467,6 +548,9 @@ export const microphones: Microphone[] = [
     heritage: 'Subtle variant of N/D468 with tamer presence peak making it marginally more versatile for amps and brass.',
     character: 'Very similar to 468 but slightly smoother in the presence region. Same cutting quality with a touch more versatility beyond drums.',
     engineering: 'Same N/DYM platform. Slightly different capsule tuning — less pronounced presence peak than 468. Supercardioid. 70Hz–17kHz. 150Ω output.',
+    tendencies: ['focused instrument punch', 'slightly smoother upper mids than the 468', 'useful isolation in dense setups'],
+    tradeoffs: ['still a voiced close-mic rather than a neutral all-rounder', 'pattern remains less forgiving than cardioid alternatives', 'not dramatically different enough to cover every tonal gap by itself'],
+    workflow_implications: ['good when the 468 feels too edgy but you still want that EV immediacy', 'practical for amps and brass that need rejection with some bite', 'easy A/B candidate beside the 468 on drum or brass duties'],
     best_for: ['toms', 'snare', 'guitar amps', 'brass', 'general close-miking'],
   },
   {
@@ -483,6 +567,9 @@ export const microphones: Microphone[] = [
     heritage: 'Affordable entry into N/DYM line for instrument applications. Direct SM57 competitor on price.',
     character: 'Honest, balanced, reliable workhorse — less flashy than 468 but solid midrange with controlled highs. Unassuming but effective instrument mic that never sounds bad.',
     engineering: 'N/DYM neodymium in more modest capsule assembly. Cardioid (not super) gives wider sweet spot at cost of slightly less rejection. Robust metal. 80Hz–15kHz. 150Ω output.',
+    tendencies: ['balanced no-drama instrument capture', 'wider sweet spot than supercardioid siblings', 'solid midrange without exaggerated bite'],
+    tradeoffs: ['less isolation than tighter N/D variants', 'fewer standout traits if you want a signature sound', 'can be overlooked because it is more competent than exciting'],
+    workflow_implications: ['useful default option when you want a stable close-mic without fuss', 'easier placement makes it good for quick sessions', 'often a safer choice than more peaked dynamics on unfamiliar sources'],
     best_for: ['guitar amps', 'toms', 'general instrument miking', 'percussion'],
   },
   {
@@ -499,6 +586,9 @@ export const microphones: Microphone[] = [
     heritage: 'Entry point of the N/DYM series. Gave budget-conscious users access to EV\'s neodymium technology.',
     character: 'Most basic N/DYM family member — warm and utilitarian. Classic "dynamic mic" sound with less top-end extension than siblings. Pleasantly unfussy.',
     engineering: 'Entry-level N/DYM capsule with neodymium magnet in simpler configuration. Cardioid. 80Hz–14kHz. 150Ω output.',
+    tendencies: ['warm uncomplicated dynamic tone', 'modest top-end extension', 'utility-first behavior'],
+    tradeoffs: ['least detailed member of the family', 'limited signature character beyond reliability', 'can feel closed-in beside more modern voiced dynamics'],
+    workflow_implications: ['good backup or utility mic where durability and predictability matter most', 'unlikely to surprise, which can be useful in fast setups', 'best used where you do not need premium articulation'],
     best_for: ['general instrument miking', 'backup vocals', 'tom miking', 'guitar cab'],
   },
   // ── Shure Dynamics ──
@@ -516,6 +606,9 @@ export const microphones: Microphone[] = [
     heritage: 'Descendant of SM7 (1973), derived from SM57/SM58 capsule platform. SM7B revision (2001) added improved EM shielding. Fame exploded after Michael Jackson\'s "Thriller" vocals at Westlake Audio. Dominant broadcast/podcast mic of 2020s.',
     character: 'Smooth, warm, full-bodied — famously flattering on vocals. Intimate and present without ever becoming harsh or sibilant. Natural richness makes voices sound mature and authoritative. That silky, close-mic\'d vocal character from "Thriller."',
     engineering: '⚠️ Low sensitivity (-59dBV) demands high-gain, low-noise preamp — expect 55–65dB gain for speaking level. Internal EM shielding (steel plate behind capsule) provides outstanding hum rejection near transformers/CRTs. Air-suspension shock mount. Switchable presence boost (+5dB @ 5–6kHz) and bass rolloff (-6dB/oct @ 400Hz).',
+    tendencies: ['smooth intimate vocal body', 'strong rejection of harshness and sibilance', 'close-mic authority'],
+    tradeoffs: ['needs unusually clean gain', 'can feel too soft or closed for some singers', 'large body and yoke mount slow quick repositioning'],
+    workflow_implications: ['pairing with the wrong preamp can make the mic seem dull or noisy', 'useful when the room is imperfect and the source benefits from proximity', 'switches let you fine-tune contour without reaching for EQ immediately'],
     best_for: ['vocals', 'podcasting', 'broadcast', 'guitar amps', 'bass cab', 'kick drum'],
   },
   {
@@ -532,6 +625,9 @@ export const microphones: Microphone[] = [
     heritage: 'Part of Shure\'s Beta line (1990s), purpose-designed kick drum mic. "A" suffix = revised mounting hardware. Default kick drum mic in live sound alongside D112 and RE20.',
     character: 'One-trick pony — devastating trick. Massive, floor-shaking kick drum with pointed beater attack. "Boing" and "thud" perfectly balanced right off the capsule. Not subtle, not versatile, absolutely authoritative on bass drums.',
     engineering: 'Purpose-built supercardioid element with hardened steel mesh grille for inside-kick placement. Shaped frequency response via capsule tuning and rear-cavity design — midrange scoop is acoustic, not electronic. Supercardioid rejects hi-hat bleed. 20Hz–10kHz shaped. 150Ω output.',
+    tendencies: ['huge sculpted kick weight', 'clear built-in beater point', 'live-ready bleed rejection'],
+    tradeoffs: ['specialist voicing limits general-purpose value', 'can overstate low-end hype on already-big drums', 'less revealing of natural shell detail than flatter options'],
+    workflow_implications: ['ideal when speed matters more than neutrality on kick', 'easy to compare against RE20 or ATM25 if you want less pre-shaped contour', 'likely to need little corrective EQ for modern bass-drum tones'],
     best_for: ['kick drum', 'floor tom', 'bass cab'],
   },
   {
@@ -548,6 +644,9 @@ export const microphones: Microphone[] = [
     heritage: 'Introduced 1965 as Unidyne III Model SM57. 60+ years continuous production. Possibly the most-used mic in recorded music. Mandated by US Secret Service for presidential podiums since LBJ.',
     character: 'The sound of rock and roll — aggressive, gritty, utterly reliable. On snare, the iconic "crack." On guitar amp, the snarl and grind. It\'s not pretty, it\'s not transparent, it\'s the SM57 — it sounds like records sound. The presence peak is its defining superpower.',
     engineering: 'Unidyne III moving-coil capsule (same element as SM58 without ball grille/pop filter). Pronounced presence peak from capsule resonance + tapered grille geometry. 150Ω output. Die-cast metal body, nearly indestructible. Handles SPL well over 160dB at grille.',
+    tendencies: ['aggressive mid-forward bite', 'record-familiar snare and amp character', 'extreme durability under abuse'],
+    tradeoffs: ['not transparent or flattering by default', 'presence peak can exaggerate harsh sources', 'needs more positioning nuance than its reputation suggests'],
+    workflow_implications: ['excellent fast benchmark because most engineers know how it should behave', 'small movements matter a lot on guitar cabs and snare', 'useful reference point for judging whether another dynamic is solving a real problem or just sounding different'],
     best_for: ['snare drum', 'guitar amps', 'toms', 'brass', 'live vocals'],
   },
   {
@@ -564,6 +663,9 @@ export const microphones: Microphone[] = [
     heritage: 'Introduced 1966 alongside SM57. World\'s most popular vocal mic — estimated hundreds of millions sold. Defined the modern handheld dynamic vocal mic form factor. Has been dropped, thrown, submerged, run over, and frozen without failing.',
     character: 'The SM57\'s more polished sibling — ball grille tames aggressive presence peak, adding warmth and smoothness. Direct, punchy, cuts through a band without sibilance. Generous musical proximity effect lets singers work the mic for dynamic control.',
     engineering: 'Identical Unidyne III capsule as SM57 — spherical steel mesh grille acts as acoustic diffuser, smoothing presence peak by ~2–3dB vs SM57 flat grille. Ball also serves as integral pop filter. Pneumatic shock mount inside grille reduces handling noise. 150Ω output.',
+    tendencies: ['familiar warm vocal cut', 'manageable proximity-based fullness', 'forgiving stage behavior'],
+    tradeoffs: ['less detailed than newer premium dynamics', 'not especially revealing for studio-critical vocal nuance', 'commonness can hide when another mic would clearly fit better'],
+    workflow_implications: ['safe handoff mic when reliability matters more than experimentation', 'singers can work distance expressively without chaos', 'good baseline comparison before moving to brighter or tighter-pattern vocal mics'],
     best_for: ['live vocals', 'backing vocals', 'speech', 'instrument miking'],
   },
   // ── Telefunken Dynamics ──
@@ -581,6 +683,9 @@ export const microphones: Microphone[] = [
     heritage: 'Designed as modern premium dynamic to compete with condensers in vocal applications. Released 2010s, cult following among live engineers wanting condenser quality without condenser fragility. "New school" dynamic design.',
     character: 'What happens when someone designs a dynamic without compromise — condenser-like clarity with a top end that shimmers rather than peaks. Proximity tightly controlled giving warmth without mud. Vocals sound open, modern, detailed.',
     engineering: 'Proprietary moving-coil capsule maintaining pattern shape across frequency range better than most dynamics. Extended 18kHz response via lightweight diaphragm and careful acoustic damping. Precision-machined steel mesh grille manages proximity effect. Low handling noise. 200Ω output.',
+    tendencies: ['open modern dynamic clarity', 'extended top without classic dynamic dullness', 'controlled proximity warmth'],
+    tradeoffs: ['more revealing of rough vocal edges than smoother classics', 'less forgiving than plain workhorse stage mics', 'premium voicing may be unnecessary for rough utility jobs'],
+    workflow_implications: ['useful when you want condenser-like articulation but still need dynamic robustness', 'good way to lift a vocal forward before EQ', 'worth comparing against smoother options if the singer already has plenty of brightness'],
     best_for: ['vocals', 'guitar amps', 'snare drum'],
   },
   {
@@ -597,6 +702,9 @@ export const microphones: Microphone[] = [
     heritage: 'Short-body "instrument" variant of the M80, same capsule in more compact form factor.',
     character: 'Same capsule character as M80 — condenser-like clarity and detail — in a compact form ideal for tight miking. Same open, modern sound.',
     engineering: 'Same proprietary capsule as M80 in shorter body. Compact form fits tight spaces around drums and amps. 200Ω output.',
+    tendencies: ['compact version of the M80\'s open clarity', 'tight-space placement flexibility', 'modern articulate instrument capture'],
+    tradeoffs: ['still brighter and more revealing than some classic close-mic dynamics', 'short body does not change the core voicing if that voicing is the issue', 'easy to overuse when a rougher sound would sit better'],
+    workflow_implications: ['excellent when physical clearance matters around drums and amps', 'lets you keep the M80 sound where the full body will not fit', 'good alternative to stubby instrument dynamics when you want more upper detail'],
     best_for: ['snare drum', 'toms', 'guitar amps', 'close-miking'],
   },
   {
@@ -613,6 +721,9 @@ export const microphones: Microphone[] = [
     heritage: 'Instrument-focused companion to M80. M81/M81s complete Telefunken\'s dynamic line for applications where M80\'s vocal-optimized presence isn\'t appropriate.',
     character: 'The M80\'s more even-tempered sibling — smoother and more balanced with less presence peak. Excellent where you want the source to come through without the mic adding its own character. The "workhorse" to the M80\'s "star."',
     engineering: 'Different capsule tuning than M80 — flatter frequency response with less presence emphasis. Short-body construction. Neodymium magnet, strong output. Well-behaved cardioid with minimal off-axis coloration. 200Ω output.',
+    tendencies: ['balanced modern dynamic tone', 'smoother than the M80', 'strong output with restrained coloration'],
+    tradeoffs: ['less instant excitement than the brighter M80', 'not as thick as some legacy instrument dynamics', 'can feel polite if a source needs attitude'],
+    workflow_implications: ['good utility choice when you want Telefunken build quality without extra vocal sheen', 'easy fit for drums and amps where the M80 is too lively', 'useful benchmark mic for deciding whether a source needs more color or more neutrality'],
     best_for: ['toms', 'snare', 'guitar amps', 'brass', 'woodwinds', 'general instrument miking'],
   },
   // ── Yamaha MZ Series ──
@@ -630,6 +741,9 @@ export const microphones: Microphone[] = [
     heritage: 'Yamaha\'s integrated PA system mics — designed to complement EM/EMX-series powered mixers. Primarily Japan/Asia-Pacific distribution. Quite rare in US/Europe. Genuine obscurity.',
     character: 'Clear, slightly bright vocal dynamic projecting well through Yamaha PA. Capable and underrated, with clean midrange that doesn\'t get muddy.',
     engineering: 'Standard moving-coil element tuned for vocal clarity. Yamaha manufacturing precision shows in consistent unit-to-unit performance. 250Ω output — slightly higher than 150Ω standard.',
+    tendencies: ['clear vocal-forward midrange', 'slightly bright stage projection', 'consistent no-drama behavior'],
+    tradeoffs: ['less documented than common stage standards', '250Ω output makes it a little less generic electrically', 'not especially distinctive outside vocal reinforcement'],
+    workflow_implications: ['worth trying as a practical stage vocal option rather than dismissing it as obscure PA stock', 'good comparison piece against mainstream handheld dynamics', 'best used where clarity matters more than vintage character'],
     best_for: ['live vocals', 'speech', 'PA applications'],
   },
   {
@@ -646,6 +760,9 @@ export const microphones: Microphone[] = [
     heritage: 'Step below MZ205 in Yamaha hierarchy. Same Japan-market integrated PA mic line. Even more obscure than MZ205.',
     character: 'Slightly less output and marginally more reserved top end than MZ205, but clean, professional-sounding. Good clarity for speech and general vocal duties.',
     engineering: 'Similar to MZ205 with different capsule tuning. Likely less powerful magnet assembly. Same robust Yamaha build. 250Ω output.',
+    tendencies: ['clean restrained vocal utility', 'moderate top-end openness', 'speech-friendly clarity'],
+    tradeoffs: ['less output and excitement than the MZ205', 'still obscure enough to require listening rather than assumptions', 'not ideal when a vocal needs obvious cut'],
+    workflow_implications: ['sensible backup vocal or speech mic where consistency matters more than glamour', 'good to audition when the MZ205 feels slightly too bright', 'fits practical reinforcement roles better than showcase recording duties'],
     best_for: ['speech', 'live vocals', 'backup vocals'],
   },
   {
@@ -662,6 +779,9 @@ export const microphones: Microphone[] = [
     heritage: 'Yamaha\'s entry-level professional dynamic. Among the most obscure mics on this list — very limited documentation outside Japanese sources.',
     character: 'Entry-level Yamaha MZ — warm, simple, unassuming. Lacks the extended top of MZ205 but has pleasantly smooth quality that\'s fine for basic duties.',
     engineering: 'Budget end of MZ line — simpler capsule, likely ferrite magnet. Fewer machining refinements. Still benefits from Yamaha QC. 250Ω output.',
+    tendencies: ['warm uncomplicated speech-duty tone', 'limited top-end extension', 'basic utility reliability'],
+    tradeoffs: ['least detailed Yamaha dynamic in the set', 'scarce documentation makes expectations fuzzy', 'rarely the best choice when fidelity matters'],
+    workflow_implications: ['useful as a utility or backup mic where smoothness is enough', 'best treated as dependable reinforcement inventory rather than a feature piece', 'good candidate when rugged simplicity matters more than nuance'],
     best_for: ['speech', 'basic vocal reinforcement', 'utility'],
   },
   // ── Heil, Beyerdynamic Dynamics ──
@@ -679,6 +799,9 @@ export const microphones: Microphone[] = [
     heritage: 'Designed by Bob Heil — pioneer who built first concert sound systems for The Who and Grateful Dead (early 1970s). PR 40 became flagship of Heil\'s 2000s microphone re-entry. Decades of live sound knowledge in a recording mic.',
     character: 'Rich, full, incredibly deep low end rivaling much larger mics — sounds huge. Smooth uncolored midrange, top end extends further than expected giving "large-diaphragm condenser in a dynamic body" feel. Warm without being dark, present without being harsh.',
     engineering: 'Proprietary 1.5-inch low-mass aluminum diaphragm in large magnet assembly. ⚠️ 600Ω output impedance unusually high — some preamps may not load optimally, tonal shifts possible depending on preamp input Z. Internal humbucking coil for EMI rejection. Genuine 28Hz bass extension.',
+    tendencies: ['large-bodied dynamic depth', 'extended top for a moving-coil mic', 'voice-of-god low-end size'],
+    tradeoffs: ['600Ω output makes preamp matching more relevant', 'can feel oversized on leaner sources', 'large presentation may crowd dense arrangements'],
+    workflow_implications: ['worth auditioning when you want scale without switching to a condenser', 'preamp choice changes the result more than with many dynamics', 'strong option for voices or instruments that need depth but not harshness'],
     best_for: ['broadcast vocals', 'podcasting', 'kick drum', 'bass cab', 'voiceover', 'male vocals'],
   },
   {
@@ -695,6 +818,9 @@ export const microphones: Microphone[] = [
     heritage: 'Introduced 1970s. Continuous favourite of top-tier engineers (Bob Clearmountain, Geoff Emerick) for decades. Great secret weapon of the drum world. Low public visibility but one of the most respected dynamics among professionals.',
     character: 'Transparency and openness sounding more like a small condenser than a dynamic. On snare, captures wire sizzle and shell tone equally. On guitar amps, detailed without being edgy. Natural, unforced quality that disappears — a favourite of engineers who know about it.',
     engineering: 'Moving-coil with hypercardioid pattern, ~12dB rejection at 110°. 18kHz extension — exceptional for a dynamic — via lightweight diaphragm assembly. Small rear lobe requires careful positioning. Compact and low-profile, fits tight drum setups. 200Ω output.',
+    tendencies: ['dynamic with near-condenser detail', 'snare and amp realism without hype', 'compact high-precision placement behavior'],
+    tradeoffs: ['hypercardioid rear lobe demands care', 'less thick and obvious than more colored drum dynamics', 'easy to underappreciate if you expect instant hype'],
+    workflow_implications: ['excellent choice when you want detail but need dynamic rejection', 'small size helps in cramped drum placements', 'worth using as a reference mic for whether a source really needs extra voicing'],
     best_for: ['snare drum', 'toms', 'hi-hat', 'guitar amps', 'percussion', 'brass'],
   },
   {
@@ -711,6 +837,9 @@ export const microphones: Microphone[] = [
     heritage: 'Professional M-series, dating to 1960s. Workhorse instrument dynamic widely used in European broadcast and studio. "n(c)" = noise-cancelling variant with proximity compensation.',
     character: 'Flexible, mid-voiced Beyerdynamic instrument dynamic — typical Beyer clarity and precision without being clinical. n(c) variant keeps low end tight even close-miked. Punchy, controlled sound. Between M201 neutrality and SM57 mid-forward punch.',
     engineering: '"n(c)" = internal acoustic filter compensating for proximity effect (similar concept to EV Variable-D but different implementation). More consistent across varying working distances. Cardioid, well-controlled. 200Ω output.',
+    tendencies: ['controlled close-mic punch', 'reduced proximity swell', 'middle ground between neutral and forward'],
+    tradeoffs: ['less famous reference point than other Beyer dynamics', 'not as open as an M201 or as aggressive as an SM57', 'can seem merely competent if you want dramatic color'],
+    workflow_implications: ['useful when varying distance would normally destabilize low end', 'good multi-mic utility choice because its behavior stays controlled', 'helpful bridge option between cleaner and more colored instrument dynamics'],
     best_for: ['toms', 'guitar amps', 'percussion', 'multi-mic setups'],
   },
   {
@@ -727,6 +856,9 @@ export const microphones: Microphone[] = [
     heritage: 'Obscure member of Beyerdynamic\'s X-series for professional stage/broadcast. Designed for compact high-directivity applications.',
     character: 'Compact hypercardioid — extremely focused and present. Bright, articulate with excellent off-axis rejection. Tight and precise with good transient response.',
     engineering: 'Hypercardioid pattern ~6dB narrower than cardioid — excellent for isolating single source in multi-mic setups. Beyerdynamic capsule precision ensures consistent pattern. Compact form factor. 200Ω output.',
+    tendencies: ['tight focused pickup', 'bright articulate presence', 'compact isolation-friendly form'],
+    tradeoffs: ['narrow pattern punishes sloppy placement', 'brightness can feel thin on already-lean sources', 'limited familiarity means more trial listening'],
+    workflow_implications: ['best used when isolation is a primary requirement', 'compact size makes it practical in crowded live or drum environments', 'good candidate when cardioids are letting too much spill through'],
     best_for: ['drums', 'instrument miking', 'percussion', 'live sound'],
   },
   // ── Audix Dynamics ──
@@ -744,6 +876,9 @@ export const microphones: Microphone[] = [
     heritage: 'Audix D-series drum mic line. VLM (Very Low Mass) diaphragm technology — lighter diaphragms = faster transient response.',
     character: 'Sharp and attack-forward — emphasizes "stick hit" quality on snare and transient bite of percussion. Bright mic that cuts through heavy stage volume effortlessly. Not the most flattering, but extremely effective.',
     engineering: 'VLM (Very Low Mass) diaphragm tracks transients with near-condenser speed. High output + excellent SPL handling. Cardioid with minimal off-axis coloration. 200Ω output.',
+    tendencies: ['attack-first drum articulation', 'bright cut through dense mixes', 'fast transient response for a dynamic'],
+    tradeoffs: ['less flattering on harsh sources', 'not much low-mid cushion', 'can overemphasize stick noise if the source already has plenty'],
+    workflow_implications: ['strong choice when snare or percussion needs to read immediately', 'good live-friendly option where clarity outranks smoothness', 'likely to need less presence EQ but more judgment about brightness'],
     best_for: ['snare drum', 'rack toms', 'percussion', 'brass'],
   },
   {
@@ -760,6 +895,9 @@ export const microphones: Microphone[] = [
     heritage: 'Direct SM57 competitor. Designed to be "what the SM57 would sound like if designed today without legacy coloration."',
     character: 'The "honest SM57" — similar weight and authority but flatter, more truthful response. Where SM57 adds its own character, i5 presents source more faithfully. On guitar amps, captures the tone you hear in the room. Balanced and natural rather than hyped.',
     engineering: 'VLM capsule with deliberately flatter response than SM57 — reduced presence peak. Output hotter than SM57 (2.5 vs 1.6 mV/Pa) means less preamp gain needed. Excellent SPL handling (140+ dB). 200Ω output.',
+    tendencies: ['flatter-than-57 instrument realism', 'solid weight without exaggerated peakiness', 'hotter output than many comparable dynamics'],
+    tradeoffs: ['less instant record-familiar crunch than an SM57', 'can seem plain if you want strong built-in color', 'still a close-mic dynamic, not a neutral condenser replacement'],
+    workflow_implications: ['useful when you want the job of a 57 with fewer assumptions baked in', 'good comparison mic for deciding how much coloration is actually helping', 'often saves a little gain and a little EQ in everyday instrument work'],
     best_for: ['guitar amps', 'snare drum', 'toms', 'general instrument miking', 'live vocals'],
   },
   {
@@ -776,6 +914,9 @@ export const microphones: Microphone[] = [
     heritage: 'The tom mic in Audix\'s D-series (D1=snare, D2=rack tom, D4=floor tom, D6=kick).',
     character: 'Tuned for toms — captures full, round body of the shell with stick attack. More full-bodied than D1 with low-mid warmth bringing out shell resonance. Hypercardioid keeps adjacent bleed manageable.',
     engineering: 'VLM capsule in hypercardioid optimized for tom-range frequencies. Emphasizes 100–300Hz where tom fundamentals live while maintaining transient clarity. Compact clip-mountable housing. 200Ω output.',
+    tendencies: ['round tom body with defined attack', 'controlled bleed in drum clusters', 'purpose-shaped low-mid support'],
+    tradeoffs: ['less universal outside tom-range duties', 'hypercardioid pickup narrows placement freedom', 'can overemphasize shell weight on already-heavy drums'],
+    workflow_implications: ['excellent when you want toms to sound finished quickly', 'compact body helps around crowded cymbal stands', 'best treated as a tuned tom tool rather than a generic instrument mic'],
     best_for: ['rack toms', 'small floor toms', 'congas', 'hand drums', 'percussion'],
   },
   {
@@ -792,6 +933,9 @@ export const microphones: Microphone[] = [
     heritage: 'The "large tom" mic in Audix\'s D-series lineup.',
     character: 'Bigger, deeper D2 — captures full weight and resonance of large toms and lower-pitched drums with authority. Satisfying low-end thump with enough top bite for defined attack. Massive on floor tom.',
     engineering: 'VLM capsule tuned for lower frequencies. 40Hz extension suitable for large toms and small bass drums. Hypercardioid maintains isolation in tight drum setups. 200Ω output.',
+    tendencies: ['deep tom weight', 'authoritative floor-tom extension', 'useful attack despite low-end focus'],
+    tradeoffs: ['voicing is specialized toward larger drums', 'can be too big for tighter or brighter sources', 'pattern still requires careful angle management'],
+    workflow_implications: ['good when large drums need size without losing definition', 'helps keep low-frequency instruments controlled in multi-mic kits', 'worth comparing against D2 when deciding how much shell mass to emphasize'],
     best_for: ['floor toms', 'large toms', 'djembe', 'cajon'],
   },
   {
@@ -808,6 +952,9 @@ export const microphones: Microphone[] = [
     heritage: 'Released early 2000s, became the kick drum mic of choice for an entire generation of metal and rock engineers. Changed the workflow — "point the D6 at the beater and you\'re done."',
     character: 'The "instant metal kick drum" mic — modern, heavily scooped with cannon-like sub-bass thump and laser-focused beater click. Requires zero EQ for modern rock/metal. Almost too aggressive for other genres, but for heavy music, perfection.',
     engineering: 'Large-diaphragm capsule in ported housing creating mid-scoop through acoustic phase cancellation — essentially a tuned resonator. VLM maintains transient speed. Cardioid optimized for sub-100Hz kick energy. Shaped response is almost mix-ready. 200Ω output.',
+    tendencies: ['pre-mixed modern kick contour', 'huge sub-bass plus beater click', 'very fast path to heavy kick sounds'],
+    tradeoffs: ['extreme scoop can feel caricatured outside rock and metal', 'not useful when natural kick midrange matters', 'easy to overcommit to a modern aesthetic too early'],
+    workflow_implications: ['ideal when the production already wants a modern aggressive kick signature', 'best compared against flatter options before printing if genre is uncertain', 'often turns kick setup into a placement choice instead of an EQ project'],
     best_for: ['kick drum', 'floor tom', 'bass cab'],
   },
   {
@@ -824,6 +971,9 @@ export const microphones: Microphone[] = [
     heritage: 'Audix\'s premium vocal dynamic line. VLM technology delivers condenser-like transient response.',
     character: 'Premium vocal dynamic — clear, open, more detailed than SM58. Hypercardioid isolates from stage noise. Mature, warm midrange with extended top bringing out vocal detail.',
     engineering: 'VLM diaphragm provides condenser-like transient response with dynamic durability. Hypercardioid ~12dB side rejection. Requires careful monitor positioning (avoid directly behind). 200Ω output.',
+    tendencies: ['clear detailed live-vocal presence', 'warm midrange with extra openness', 'strong stage isolation'],
+    tradeoffs: ['less forgiving monitor geometry than cardioid vocal mics', 'can expose rough vocal texture more than softer classics', 'not as extreme in rejection as the OM7'],
+    workflow_implications: ['useful when a vocalist needs detail but still wants dynamic handling', 'monitor placement matters because of the hypercardioid pattern', 'good step up from entry-level stage vocal mics without going overly clinical'],
     best_for: ['live vocals', 'studio vocals'],
   },
   {
@@ -840,6 +990,9 @@ export const microphones: Microphone[] = [
     heritage: 'Sits just below flagship OM7 in Audix vocal hierarchy. Represents upper range of what VLM technology can extract from a dynamic capsule.',
     character: 'Most detailed dynamic vocal in Audix\'s line — top end genuinely condenser-like, capturing breath and air most dynamics miss. Vocals sound intimate and present. Remarkably transparent for a dynamic.',
     engineering: 'Even lighter VLM diaphragm than OM5 pushing response to genuine 20kHz. Tighter hypercardioid than OM5. Higher output (3.16 mV/Pa) means less gain needed — excellent SNR for a dynamic. 200Ω output.',
+    tendencies: ['very detailed dynamic vocal capture', 'airy articulation beyond most handheld dynamics', 'strong output with tight focus'],
+    tradeoffs: ['more revealing of sibilance and mic technique', 'hypercardioid pickup still constrains stage geometry', 'can feel too hi-fi if a rougher vocal sound is desired'],
+    workflow_implications: ['good when a singer wants condenser-like detail without moving to a condenser', 'often reduces the need for added presence boost', 'best paired with disciplined stage positioning and technique'],
     best_for: ['live vocals', 'studio vocals'],
   },
   {
@@ -856,6 +1009,9 @@ export const microphones: Microphone[] = [
     heritage: 'Flagship of Audix OM vocal series. OM7\'s design philosophy — sacrifice sensitivity for rejection — makes it an extreme specialist for the loudest stages.',
     character: 'Ultimate feedback-rejecting vocal mic — tightest pattern of any Audix dynamic. Controlled, focused, almost studio-like precision. Lower output picks up far less bleed. The mic for singing next to a Marshall stack.',
     engineering: '⚠️ Lower sensitivity is intentional — capsule tuned for maximum rejection at expense of raw output. Demands clean high-gain preamp (55+ dB). Tightest hypercardioid in Audix line with very small rear lobe. Maximum gain-before-feedback. 200Ω output.',
+    tendencies: ['extreme rejection and focus', 'minimal stage bleed', 'controlled studio-like precision in loud environments'],
+    tradeoffs: ['needs serious clean gain', 'not forgiving for casual singers or weak technique', 'specialized enough to feel unnecessary on quieter stages'],
+    workflow_implications: ['best reserved for genuinely loud environments where other vocal mics fold first', 'preamp quality directly affects how usable it feels', 'great problem-solver when feedback and spill are the actual bottlenecks'],
     best_for: ['live vocals on extremely loud stages', 'theater'],
   },
   // ── Peavey Dynamics ──
@@ -873,6 +1029,9 @@ export const microphones: Microphone[] = [
     heritage: 'Peavey\'s PVM (Pro Vocal Microphone) series (late 80s–90s). Surprisingly competitive mics often overlooked due to brand perception.',
     character: 'Solid, punchy dynamic with distinct midrange forwardness — "live sound" character that projects well. Slightly aggressive, no-nonsense quality sitting well in band mixes.',
     engineering: 'Moving-coil with attention to off-axis rejection. 250Ω output slightly higher than 150Ω standard, may affect some preamp loading. Robust construction from Peavey\'s live-sound heritage.',
+    tendencies: ['mid-forward live projection', 'punchy no-frills vocal behavior', 'rugged stage-minded utility'],
+    tradeoffs: ['less refined than premium vocal dynamics', '250Ω output makes it slightly less generic than standard stage mics', 'can feel blunt on more nuanced material'],
+    workflow_implications: ['useful reinforcement mic when practicality matters more than pedigree', 'good obscure alternative when common live dynamics are unavailable', 'best used where cut and durability matter more than polish'],
     best_for: ['live vocals', 'instrument miking', 'PA applications'],
   },
   // ── Other Dynamics ──
@@ -890,6 +1049,9 @@ export const microphones: Microphone[] = [
     heritage: 'Introduced by AKG 1980 as successor to legendary D12/D12E. "The egg" — instantly recognizable shape. Perhaps most widely used kick drum mic in the world. v1 (original) preferred by many for warmer, more "vintage" character.',
     character: 'The "egg" — big, round kick drum sound with clear "click" on beater. Natural midrange scoop gives scooped tone working without EQ for most kick sounds. Less aggressive than D6 but more colored than RE20. Default kick drum mic for decades.',
     engineering: 'Large ~1.2-inch diaphragm for high-SPL low-frequency applications. Handles 160+ dB at capsule. Round housing is acoustically functional — chamber behind capsule contributes to mid-scoop through acoustic phase cancellation. 210Ω output.',
+    tendencies: ['big rounded kick contour', 'familiar built-in scoop', 'classic low-frequency utility'],
+    tradeoffs: ['less natural than flatter kick mics', 'large housing can limit placement angles', 'voicing can feel dated or generic depending on the production'],
+    workflow_implications: ['useful benchmark for kick because most engineers understand its curve immediately', 'good middle ground between raw and heavily pre-shaped kick mics', 'best compared against D6 or RE20 when deciding how modern or natural the drum should feel'],
     best_for: ['kick drum', 'bass cab', 'floor toms', 'low brass'],
   },
   {
@@ -906,6 +1068,9 @@ export const microphones: Microphone[] = [
     heritage: 'Originally part of A-T\'s "Artist" series. Strong following among live/studio engineers. Now discontinued but highly regarded. Three matched units ideal for consistent tom setup.',
     character: 'Versatile, full-bodied dynamic with impressive low-end depth — captures kick with genuine sub-bass weight, handles toms with rich tone. Hypercardioid keeps things tight. Less shaped than D112 or D6, more natural, less "pre-EQ\'d." Very underrated.',
     engineering: 'Large-diaphragm moving-coil in rugged compact housing. Hypercardioid ~12dB rejection at 110°. 30Hz LF extension notable for this size. Three-unit set makes consistent tom miking ideal. 200Ω output.',
+    tendencies: ['deep natural low-end extension', 'tight hypercardioid focus', 'versatile drum-friendly body'],
+    tradeoffs: ['less instant click-and-scoop than specialist kick mics', 'rear-lobe awareness matters in kit setups', 'discontinued status makes replacement assumptions harder'],
+    workflow_implications: ['excellent when you want low-frequency weight without fully pre-shaped kick voicing', 'three similar units make consistent tom setups practical', 'worth using when you want one family that can move between kick and tom duties'],
     best_for: ['toms', 'kick drum', 'snare bottom', 'bass cab', 'percussion'],
   },
   {
@@ -922,6 +1087,9 @@ export const microphones: Microphone[] = [
     heritage: 'sE Electronics (Shanghai/UK, founded 2000). V7 released ~2017, breakout product — widely praised as best sub-$100 dynamic vocal mic. Represents new wave of Chinese-designed pro audio competing at highest level.',
     character: 'Modern dynamic punching well above its price — clarity and openness rivaling mics costing 3-4× more. Vocals rich, detailed, dimensional. Supercardioid focused without "tunnel" effect. Genuine contender against Telefunken M80 at fraction of cost.',
     engineering: 'Proprietary aluminum voice coil on custom-tuned diaphragm. Internal shock mount + grille design minimize handling noise and pop. Extended 19kHz response captures harmonics most dynamics truncate. Supercardioid with small rear lobe. All-metal housing. 200Ω output.',
+    tendencies: ['open detailed handheld vocal sound', 'strong value-to-performance ratio', 'focused supercardioid cut without severe tunnel tone'],
+    tradeoffs: ['still less forgiving than softer classic stage mics', 'rear-lobe behavior requires decent monitor discipline', 'can make rough voices sound rougher than an SM58 would'],
+    workflow_implications: ['good modern vocal choice when budget is not supposed to look like a compromise', 'useful comparison against M80-style voicing at lower cost', 'often rewards singers who want clarity without switching to condenser fragility'],
     best_for: ['live vocals', 'studio vocals', 'guitar amps', 'instrument miking'],
   },
   {
@@ -938,6 +1106,9 @@ export const microphones: Microphone[] = [
     heritage: 'Lewitt (Vienna, Austria, founded 2009) by former AKG engineers. Austrian precision engineering combined with modern design. Entry into dynamic vocal market.',
     character: 'Refined and warm — smoothness making vocals sound polished and comfortable. Less aggressive than Shure/Sennheiser, more "produced" quality straight off the capsule. Grown-up sounding, doesn\'t need to shout.',
     engineering: 'Lewitt proprietary capsule emphasizing low-noise performance and consistent quality through tight manufacturing tolerances. 275Ω output slightly above average. Well-controlled cardioid with minimal off-axis coloration.',
+    tendencies: ['smooth polished vocal warmth', 'less aggressive stage presence', 'controlled off-axis behavior'],
+    tradeoffs: ['less cut than brighter live vocal mics', '275Ω output is mildly non-standard', 'may sound too polite when a vocal needs edge'],
+    workflow_implications: ['useful when a singer wants comfort and smoothness over hype', 'good alternative to more common vocal standards when harshness is the problem', 'best for setups where stable tone matters more than maximum projection'],
     best_for: ['live vocals', 'studio vocals', 'speech', 'broadcast'],
   },
   {
@@ -954,6 +1125,9 @@ export const microphones: Microphone[] = [
     heritage: 'Subkick concept popularized by Yamaha SKRM-100 (NS-10 woofer repurposed as mic). DIY versions common since 1990s. The Kraken is a purpose-built commercial subkick with proper impedance matching and mounting.',
     character: 'Captures the chest-thumping, floor-shaking sub-bass of kick drum no regular mic can reproduce. Adds physical, seismic quality when blended with conventional kick mic. Alone it\'s a sine wave earthquake. Blended, it adds "feel it in your ribcage" dimension.',
     engineering: 'Loudspeaker used in reverse — large speaker cone is extremely sensitive to low-frequency pressure waves. 6–10 inch speaker generates voltage from sound pressure. Impedance-matching transformer brings speaker Z up to mic-level. Captures ONLY sub-bass frequencies (~20–100Hz). Positioning critical — too close = wind noise.',
+    tendencies: ['captures sub-bass feel rather than full kick tone', 'adds physical low-frequency weight when blended', 'very narrow bandwidth by design'],
+    tradeoffs: ['not useful alone for a complete kick sound', 'placement and wind sensitivity are unforgiving', 'can overload a mix with mud if blended without restraint'],
+    workflow_implications: ['treat as a dedicated blend source, not a standalone microphone', 'best added after deciding the main kick mic already works', 'small position changes can radically alter how much sub-energy reaches the chain'],
     best_for: ['kick drum sub-bass augmentation'],
   },
 
@@ -974,6 +1148,9 @@ export const microphones: Microphone[] = [
     heritage: 'Shure\'s boundary/PZM-style condenser. Became a staple of the "pillow inside kick drum" technique. Many top engineers blend it with a dynamic outside for ultimate kick sound.',
     character: 'Inside a kick drum: clean, precise capture of beater attack and shell tone with clarity dynamics can\'t match. Reveals full tonal complexity. On flat surfaces: captures acoustic space with remarkable evenness. Transparent, articulate, modern.',
     engineering: 'Half-cardioid boundary (PZM-style) condenser. On flat surface, boundary effect eliminates comb filtering — direct and reflected paths identical, coherent +6dB summation, no phase cancellation. Condenser element provides extended 20Hz–20kHz and high 7.9mV/Pa sensitivity. 150Ω output. 48V phantom.',
+    tendencies: ['precise boundary-based attack capture', 'coherent flat-surface pickup', 'clean modern interior-kick detail'],
+    tradeoffs: ['less body and bloom than some external kick positions', 'needs a proper boundary surface to behave as intended', 'can feel too click-focused if used without a companion mic'],
+    workflow_implications: ['best understood as part of a multi-mic kick strategy', 'excellent when you want attack and shell articulation without internal phase smear', 'works well when the placement problem is about geometry more than EQ'],
     best_for: ['kick drum interior', 'conference tables', 'piano', 'stage floor', 'kick drum blend'],
   },
   {
@@ -990,6 +1167,9 @@ export const microphones: Microphone[] = [
     heritage: 'Part of Beyerdynamic\'s TG (Touring Gear) series for professional live/touring. Beyerdynamic\'s modern approach to kick drum capture competing with SM91.',
     character: 'Focused, punchy kick drum sound with well-defined beater attack. Cleaner and more hi-fi than dynamic kick mic, with tightness in low end working well for modern production. Slightly more "voiced" for kick than the neutral SM91.',
     engineering: 'Back-electret condenser in boundary housing optimized for kick drum. More deliberately shaped response than SM91 — subtle mid-scoop and presence peak for "ready to use" tone. Compact flat housing with integrated mounting clip. TG designation = robust live construction. 200Ω output.',
+    tendencies: ['focused modern kick attack', 'tight low-end response', 'slightly pre-voiced boundary tone'],
+    tradeoffs: ['less neutral than the SM91', 'specialized kick intent narrows broader utility', 'boundary format still favors specific placement logic'],
+    workflow_implications: ['good when you want a flatter-profile mic physically but a more shaped result sonically', 'useful live or studio where fast inside-kick setup matters', 'easy comparison point against the SM91 when deciding how much voicing should happen at the capsule'],
     best_for: ['kick drum interior', 'floor tom interior', 'cajon', 'stage floor'],
   },
   {
@@ -1006,6 +1186,9 @@ export const microphones: Microphone[] = [
     heritage: 'Audix\'s miniature installed-sound and studio condenser with interchangeable capsule system. Swiss Army knives of small condensers. Multiple capsule heads available (cardioid, hypercardioid, omni, shotgun).',
     character: 'Chameleons — depending on capsule, they\'re transparent overheads, focused spot mics, or ambient capture. Tiny size disappears into setups. Sound is clean, accurate, uncolored — reveals source rather than imposing character.',
     engineering: 'Prepolarized (electret) condenser with interchangeable capsule system — threads onto body for quick pattern changes. Miniature form (~5 inches, pencil-thin) minimizes acoustic shadowing. Small diaphragm provides excellent transient response and off-axis coherence. 200Ω output. 48V phantom.',
+    tendencies: ['small-format transparency', 'minimal visual and acoustic intrusion', 'system-like flexibility from capsule options'],
+    tradeoffs: ['less obvious personality if you want character from the mic itself', 'small-body convenience can tempt overcomplicated setups', 'electret system approach is more practical than romantic'],
+    workflow_implications: ['useful when sightlines, mounting, or footprint are real constraints', 'excellent utility set for changing tasks without changing the whole mic concept', 'good choice when you want capture accuracy but not a large mic body in the way'],
     best_for: ['drum overheads', 'choir', 'theater', 'piano', 'measurement', 'hidden mounting'],
   },
   {
@@ -1022,6 +1205,9 @@ export const microphones: Microphone[] = [
     heritage: 'Crown (Elkhart IN) best known for PZM boundary mics. GLM series applied their miniature expertise to lavalier condenser design. Crown pioneered boundary and miniature tech since 1970s.',
     character: 'Tiny condenser with surprisingly full, clear sound. Designed for close-miking with hypercardioid focus on source. Presence lift adds clarity to spoken word without thinning.',
     engineering: 'Prepolarized electret in miniature housing (~6mm diameter). Hypercardioid provides maximum gain-before-feedback in lavalier application. Very small capsule = excellent HF extension and minimal interference effects. 200Ω output. 12–48V phantom.',
+    tendencies: ['miniature close-mic clarity', 'spoken-word-friendly presence lift', 'high focus for a very small format'],
+    tradeoffs: ['designed around close pickup rather than broad studio versatility', 'tiny form factor can encourage compromised placement if over-hidden', 'hypercardioid behavior is less forgiving than casual clip-ons'],
+    workflow_implications: ['best when size and concealment matter alongside intelligibility', 'good option for hidden or theatrical placements that still need focus', 'works most predictably when treated as a purpose-built miniature rather than a general pencil substitute'],
     best_for: ['lavalier vocal pickup', 'theater', 'hidden instrument miking', 'broadcast'],
   },
   {
@@ -1038,6 +1224,9 @@ export const microphones: Microphone[] = [
     heritage: 'miniDSP (Hong Kong) specializes in digital signal processing and room correction. UMIK-1 democratized accurate room measurement, previously requiring expensive Earthworks or B&K systems.',
     character: 'Not designed to flatter — designed to tell the truth. Reveals acoustic reality of your room and speaker system with clinical accuracy. A measurement instrument making your monitoring environment audible and fixable.',
     engineering: 'MEMS/electret capsule with omnidirectional pattern + USB audio interface with 24-bit ADC. Individual factory calibration file (by serial number) corrects specific capsule deviation to ±1dB 20Hz–20kHz. USB output bypasses preamp — plug and play with REW, Dirac. Omni pattern essential for capturing reflected energy.',
+    tendencies: ['clinical room-truth capture', 'calibrated repeatability', 'measurement-first rather than musical behavior'],
+    tradeoffs: ['not intended for flattering program recording', 'USB-only workflow removes normal analog chain choices', 'results are only as useful as the calibration and measurement process'],
+    workflow_implications: ['use it to diagnose the room, not to judge a performer or source artistically', 'direct USB path simplifies setup for measurement tasks', 'best value comes from disciplined repeatable measurement habits'],
     best_for: ['room measurement', 'speaker calibration', 'REW/Dirac', 'subwoofer placement', 'acoustic treatment verification'],
   },
   {
@@ -1054,6 +1243,9 @@ export const microphones: Microphone[] = [
     heritage: 'Zoom (Tokyo) created the handheld recorder category with H4 (2006). H4n Pro (2016) improved preamp noise floor. Ubiquitous in filmmaking, journalism, music production, and podcasting.',
     character: 'Portable recording studio in your hand — built-in X/Y mics capture surprisingly natural, open stereo image with good depth. Won\'t replace dedicated chains but remarkably capable for field recording, rehearsal capture, ambient room sound.',
     engineering: 'Matched electret condenser X/Y pair at 90° or 120° (selectable). Coincident configuration ensures mono compatibility. Two XLR/TRS combo inputs with 48V phantom for external mics. Internal 24-bit/96kHz ADC. SD card storage. Built-in limiter and LPF.',
+    tendencies: ['quick natural stereo capture', 'portable all-in-one convenience', 'surprisingly open rehearsal and ambient documentation'],
+    tradeoffs: ['not a replacement for a dedicated studio front end', 'self-contained recorder workflow is less modular', 'built-in mics are more about access and speed than premium tone'],
+    workflow_implications: ['ideal when the priority is capturing the moment rather than assembling a full chain', 'useful for room, rehearsal, and songwriting documentation that would otherwise be lost', 'best treated as a fast field tool with optional external mic expansion'],
     best_for: ['field recording', 'rehearsal capture', 'ambient room sound', 'portable stereo recording', 'songwriting demos'],
   },
 ];

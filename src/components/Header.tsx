@@ -1,74 +1,45 @@
-import type { Perspective, ViewMode } from '../types/studio';
+import type { Perspective } from '../types/studio';
 
 interface Props {
   perspective: Perspective;
-  view: ViewMode;
   onPerspective: (p: Perspective) => void;
-  onView: (v: ViewMode) => void;
-  onClearChain: () => void;
 }
 
-const perspectives: { key: Perspective; label: string; icon: string; desc: string }[] = [
-  { key: 'engineer', label: 'Audio Engineer', icon: '🎛️', desc: 'Signal flow, chain building, analysis' },
-  { key: 'musician', label: 'Musician', icon: '🎵', desc: 'Sound character, what it does' },
-  { key: 'technical', label: 'Technical', icon: '⚡', desc: 'Impedance, EM zones, wiring' },
+const perspectives: { key: Perspective; label: string }[] = [
+  { key: 'engineer', label: 'Engineer' },
+  { key: 'musician', label: 'Musician' },
+  { key: 'technical', label: 'Technical' },
 ];
 
-const views: { key: ViewMode; label: string; icon: string }[] = [
-  { key: 'patchbay', label: 'Patchbay', icon: '▥' },
-  { key: 'room', label: 'Room', icon: '⬡' },
-  { key: 'chain', label: 'Chain Builder', icon: '⛓' },
-];
-
-export default function Header({ perspective, view, onPerspective, onView, onClearChain }: Props) {
+export default function Header({ perspective, onPerspective }: Props) {
   return (
-    <header className="bg-zinc-900 border-b border-zinc-700 px-4 py-3">
-      <div className="flex items-center justify-between mb-3">
-        <div className="flex items-center gap-3">
-          <h1 className="text-xl font-bold text-amber-400 tracking-tight">Studio Digital Twin</h1>
-          <span className="text-xs text-zinc-500 hidden sm:inline">Professional Analog Recording Studio</span>
-        </div>
-        <button onClick={onClearChain} className="text-xs text-zinc-400 hover:text-red-400 border border-zinc-700 rounded px-2 py-1 transition">
-          Clear Chain
-        </button>
-      </div>
-
-      <div className="flex flex-wrap items-center gap-6">
-        {/* Perspective selector */}
-        <div className="flex items-center gap-1">
-          <span className="text-xs text-zinc-500 mr-1">Perspective:</span>
-          {perspectives.map(p => (
-            <button
-              key={p.key}
-              onClick={() => onPerspective(p.key)}
-              title={p.desc}
-              className={`px-2.5 py-1 rounded text-xs font-medium transition ${
-                perspective === p.key
-                  ? 'bg-amber-500/20 text-amber-300 border border-amber-500/40'
-                  : 'text-zinc-400 hover:text-zinc-200 border border-transparent'
-              }`}
-            >
-              {p.icon} {p.label}
-            </button>
-          ))}
+    <header className="border-b border-zinc-800 bg-zinc-950/90 px-4 py-4 backdrop-blur">
+      <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
+        <div className="space-y-1">
+          <div className="text-[10px] uppercase tracking-[0.24em] text-zinc-500">Signal Flow Reference</div>
+          <h1 className="text-xl font-semibold tracking-tight text-zinc-100">Signal Atlas</h1>
+          <p className="max-w-2xl text-xs leading-relaxed text-zinc-500">
+            Learn how a studio path behaves, why a circuit choice changes the result, and what each routing decision commits to the sound before it reaches the recorder.
+          </p>
         </div>
 
-        {/* View selector */}
-        <div className="flex items-center gap-1">
-          <span className="text-xs text-zinc-500 mr-1">View:</span>
-          {views.map(v => (
-            <button
-              key={v.key}
-              onClick={() => onView(v.key)}
-              className={`px-2.5 py-1 rounded text-xs font-medium transition ${
-                view === v.key
-                  ? 'bg-blue-500/20 text-blue-300 border border-blue-500/40'
-                  : 'text-zinc-400 hover:text-zinc-200 border border-transparent'
-              }`}
-            >
-              {v.icon} {v.label}
-            </button>
-          ))}
+        <div className="flex flex-col gap-2 sm:flex-row sm:flex-wrap sm:items-center sm:justify-end">
+          <div className="flex items-center gap-2 rounded-full border border-zinc-800 bg-zinc-900/80 px-2 py-1">
+            <span className="text-[10px] uppercase tracking-wide text-zinc-500">Perspective</span>
+            {perspectives.map(p => (
+              <button
+                key={p.key}
+                onClick={() => onPerspective(p.key)}
+                className={`rounded-full px-3 py-1 text-xs font-medium transition ${
+                  perspective === p.key
+                    ? 'border border-amber-500/30 bg-amber-500/12 text-amber-200'
+                    : 'border border-transparent text-zinc-400 hover:text-zinc-200'
+                }`}
+              >
+                {p.label}
+              </button>
+            ))}
+          </div>
         </div>
       </div>
     </header>

@@ -21,6 +21,9 @@ export const equalizers: Equalizer[] = [
     heritage: 'Compact version of the Manley Massive Passive, designed by Craig "Hutch" Hutchison. Shares the same Pultec-lineage passive-inductor topology in a smaller package.',
     character: 'Huge, lush, and three-dimensional. Passive boost curves interact musically — adds weight and air simultaneously. The tube makeup stage imparts warmth without effort.',
     engineering: 'Passive inductor EQ with tube gain makeup amplifier. No active components in the EQ path — inductors and capacitors only. Tube makeup amp restores level. Langevin steel-core output transformers. Zone A: output and power transformers radiate.',
+    tendencies: ['Leans toward broad tone-shaping rather than narrow correction', 'Can make a stereo source feel wider, heavier, or more open with relatively small moves', 'Invites additive shaping because the curves stay smooth even when boosted'],
+    tradeoffs: ['Large, flattering curves can hide whether you are fixing a source problem or just liking the extra weight', 'Not the fastest tool for surgical cleanup or notch-style problem solving', 'Tube and transformer makeup can make level-matched comparisons important'],
+    workflow_implications: ['Works best when you have time to listen to broad tonal moves instead of chasing individual resonances', 'Often makes sense late in the chain where overall tone and density are already established', 'Because the boosts can sound "finished" quickly, gain staging and bypass checks matter'],
     best_for: ['stereo bus', 'vocals', 'mastering', 'mix sweetening'],
   },
 
@@ -44,6 +47,9 @@ export const equalizers: Equalizer[] = [
     heritage: 'Named for the 2A3 directly-heated triode power tube used in the audio path. Inspired by vintage broadcast program EQ designs from the Gates/RCA era.',
     character: 'Warm, weighty, and unmistakably tube. The 2A3 power tube in the signal path adds harmonic richness that no solid-state EQ can replicate. Broad, musical curves that enhance rather than correct.',
     engineering: '⚠️ Uses a 2A3 directly-heated triode (power tube) in the audio path — extremely unusual for a modern EQ. Tube-reactive circuitry where the EQ response changes with tube behavior. Transformer-coupled output. Zone A: significant magnetic field from power supply and output transformers.',
+    tendencies: ['Pushes material toward density, bloom, and tonal size more than crisp precision', 'Makes broad low and top-end moves feel like part of the amplification stage, not just a filter overlay', 'Can shift the emotional weight of a source even before large EQ moves are applied'],
+    tradeoffs: ['The tube personality is part of the result, so it is less neutral than a cleaner active EQ', 'Broad curves mean it is easy to improve vibe without specifically controlling a problem frequency', 'Heat, headroom feel, and tube behavior make exact recall less clinical than cleaner modern tools'],
+    workflow_implications: ['Useful when the source already deserves enhancement rather than repair', 'Encourages printing decisions because the tube-EQ interaction is often chosen for feel, not reversibility', 'Worth level-matching carefully because the harmonic lift can read as louder and better'],
     best_for: ['vocals', 'bass', 'full mix', 'mastering', 'anything needing tube warmth and dimension'],
   },
 
@@ -66,6 +72,9 @@ export const equalizers: Equalizer[] = [
     heritage: 'Boutique hand-built inductor EQ. Small-batch American manufacturing with hand-wound inductors.',
     character: 'Iron-inductor personality — punchy lows, textured midrange presence, silky top end. Each band interacts musically with the others. Adds weight and definition simultaneously.',
     engineering: 'Active inductor EQ with hand-wound iron-core inductors. Discrete Class A gain makeup. Transformer-coupled I/O. Hand-built, small-batch production.',
+    tendencies: ['Adds a sense of impact and edge without feeling hyped in the top end', 'Midrange moves tend to read as presence and shape, not just frequency redistribution', 'Can make single sources feel more finished on the way in'],
+    tradeoffs: ['The personality is strong enough that subtle moves still leave a fingerprint', 'Single-channel format makes stereo use slower unless you are deliberately treating one side or one source', 'Not the most transparent choice when the goal is to keep the EQ move almost invisible'],
+    workflow_implications: ['Well suited to committing a tone while tracking when you want the source to arrive more produced', 'Rewards small moves and repeated listening because band interaction can stack up quickly', 'Best used with intent rather than as a generic cleanup insert'],
     best_for: ['drums', 'vocals', 'electric guitar', 'bass', 'mix bus'],
   },
   {
@@ -84,6 +93,9 @@ export const equalizers: Equalizer[] = [
     heritage: 'Designed by Paul Wolff (API, DeMaria). Inductor-based topology sharing DNA with classic Neve and API EQ designs.',
     character: 'Musical and punchy — the inductor topology adds a tactile quality to boosts and cuts. Neve-esque warmth with modern precision. Subtle harmonic enhancement from discrete Class A circuitry.',
     engineering: 'Discrete Class A active inductor EQ. Custom-wound inductors per band. Proprietary ToneLux discrete op-amps. Low-impedance output — drives long cable runs and transformer-coupled inputs without issue.',
+    tendencies: ['Balances musical color with faster, more practical shaping than a slower passive design', 'Can tighten lows and present mids without pushing the source too far into obvious character', 'Often reads as "finished console EQ" rather than boutique special effect'],
+    tradeoffs: ['Less overtly grand or blooming than the bigger tube and passive options in the rack', 'Because it is easy to use, it can become a default move instead of a deliberate tonal choice', 'Its musicality can disguise cumulative EQ stacking when several stages are already shaping tone'],
+    workflow_implications: ['Good utility choice when you want confident tone moves without turning the whole session into a recall puzzle', 'Sits comfortably in tracking or mix positions because it is neither too surgical nor too theatrical', 'Useful for maintaining momentum when you want to shape quickly and keep moving'],
     best_for: ['drums', 'guitars', 'bass', 'tracking EQ', 'mix bus'],
   },
 
@@ -107,6 +119,9 @@ export const equalizers: Equalizer[] = [
     heritage: 'Based on the EMI TG12345 console EQ section — the desk used for Abbey Road, Dark Side of the Moon, and countless EMI/Abbey Road recordings.',
     character: 'The sound of Abbey Road — smooth, musical, and instantly familiar. The Marinair transformers add a silky iron coloration. Presence band is the secret weapon — adds clarity without harshness.',
     engineering: 'Discrete Class A circuitry with Marinair transformers on input and output. Based on the EMI TG12345 channel EQ section. Germanium and silicon transistor gain stages. The transformer saturation characteristics add musical harmonic content at higher levels.',
+    tendencies: ['Brings forward presence and polish in a way that tends to feel record-like rather than clinical', 'Encourages broad tonal framing more than analytical fixing', 'Can make vocals, strings, and guitars step forward without a sharp modern edge'],
+    tradeoffs: ['Fixed frequency choices mean the musical result is prioritized over exact targeting', 'Transformer color is part of the move, so neutrality is not really the point', 'Using two mono units for stereo work takes more attention than a single linked stereo equalizer'],
+    workflow_implications: ['Strong option when a source needs identity and forward motion more than technical cleanup', 'Worth treating as a tone choice with gain-staging consequences, not just a frequency balance tool', 'On stereo material, matching settings by ear matters because small differences can shift image and tone'],
     best_for: ['vocals', 'strings', 'acoustic guitar', 'mix bus', 'anything needing smooth musicality'],
   },
   {
@@ -126,6 +141,9 @@ export const equalizers: Equalizer[] = [
     heritage: 'Based on the EMI TG12345 console EQ section — the desk used for Abbey Road, Dark Side of the Moon, and countless EMI/Abbey Road recordings.',
     character: 'The sound of Abbey Road — smooth, musical, and instantly familiar. The Marinair transformers add a silky iron coloration. Presence band is the secret weapon — adds clarity without harshness.',
     engineering: 'Discrete Class A circuitry with Marinair transformers on input and output. Based on the EMI TG12345 channel EQ section. Germanium and silicon transistor gain stages. The transformer saturation characteristics add musical harmonic content at higher levels.',
+    tendencies: ['Brings forward presence and polish in a way that tends to feel record-like rather than clinical', 'Encourages broad tonal framing more than analytical fixing', 'Can make vocals, strings, and guitars step forward without a sharp modern edge'],
+    tradeoffs: ['Fixed frequency choices mean the musical result is prioritized over exact targeting', 'Transformer color is part of the move, so neutrality is not really the point', 'Using two mono units for stereo work takes more attention than a single linked stereo equalizer'],
+    workflow_implications: ['Strong option when a source needs identity and forward motion more than technical cleanup', 'Worth treating as a tone choice with gain-staging consequences, not just a frequency balance tool', 'On stereo material, matching settings by ear matters because small differences can shift image and tone'],
     best_for: ['vocals', 'strings', 'acoustic guitar', 'mix bus', 'anything needing smooth musicality'],
   },
 
@@ -147,6 +165,9 @@ export const equalizers: Equalizer[] = [
     em_zone: 'C',
     character: 'Subtle and transparent. One knob reshapes the entire tonal balance without any single frequency jumping out. Perfect for gentle correction without artifacts.',
     engineering: 'Discrete Class A tilt EQ. Single control pivots the frequency response around a center point (~1kHz). Minimal phase shift. ToneLux discrete op-amps. Extremely low noise floor.',
+    tendencies: ['Shifts a source brighter or darker as a whole instead of drawing attention to individual bands', 'Makes quick tonal course-correction possible without collapsing into over-EQing', 'Often preserves the impression of the original source while nudging balance into place'],
+    tradeoffs: ['Single-knob simplicity means you cannot solve low and high issues independently', 'Because the move feels gentle, it can be tempting to use it where a more targeted fix is actually needed', 'The result can be subtle enough that careful bypass comparison is needed to judge whether it helped'],
+    workflow_implications: ['Excellent momentum tool when a source just needs to lean warmer or brighter and move on', 'Useful late in a chain for tonal re-centering after compression or other coloring stages', 'Pairs well with faster decision-making because the control set discourages overworking'],
     best_for: ['mastering', 'mix bus', 'gentle correction', 'vocal tilt', 'room tone adjustment'],
   },
   {
@@ -164,6 +185,9 @@ export const equalizers: Equalizer[] = [
     em_zone: 'C',
     character: 'Subtle and transparent. One knob reshapes the entire tonal balance without any single frequency jumping out. Perfect for gentle correction without artifacts.',
     engineering: 'Discrete Class A tilt EQ. Single control pivots the frequency response around a center point (~1kHz). Minimal phase shift. ToneLux discrete op-amps. Extremely low noise floor.',
+    tendencies: ['Shifts a source brighter or darker as a whole instead of drawing attention to individual bands', 'Makes quick tonal course-correction possible without collapsing into over-EQing', 'Often preserves the impression of the original source while nudging balance into place'],
+    tradeoffs: ['Single-knob simplicity means you cannot solve low and high issues independently', 'Because the move feels gentle, it can be tempting to use it where a more targeted fix is actually needed', 'The result can be subtle enough that careful bypass comparison is needed to judge whether it helped'],
+    workflow_implications: ['Excellent momentum tool when a source just needs to lean warmer or brighter and move on', 'Useful late in a chain for tonal re-centering after compression or other coloring stages', 'Pairs well with faster decision-making because the control set discourages overworking'],
     best_for: ['mastering', 'mix bus', 'gentle correction', 'vocal tilt', 'room tone adjustment'],
   },
 ];

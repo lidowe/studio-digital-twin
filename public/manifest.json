@@ -1,7 +1,7 @@
 {
-  "name": "Studio Digital Twin",
-  "short_name": "Studio Twin",
-  "description": "Digital twin of your recording studio signal chain",
+  "name": "Signal Atlas",
+  "short_name": "Atlas",
+  "description": "Educational studio signal-flow reference focused on routing, circuit choices, and sonic character",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",

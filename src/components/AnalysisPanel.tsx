@@ -1,11 +1,24 @@
-import type { ChainAnalysis, Microphone, Preamp, InsertProcessor, Perspective } from '../types/studio';
+import { useState } from 'react';
+import type {
+  ChainAnalysis,
+  InsertProcessor,
+  Microphone,
+  ParallelProcessor,
+  Perspective,
+  PerspectiveInsightModel,
+  Preamp,
+  RouteSummaryModel,
+} from '../types/studio';
 
 interface Props {
   perspective: Perspective;
   analysis: ChainAnalysis | null;
+  routeSummary: RouteSummaryModel;
+  perspectiveInsight: PerspectiveInsightModel;
   selectedMic: Microphone | null;
   selectedPreamp: Preamp | null;
   insertChain: InsertProcessor[];
+  parallelChain: ParallelProcessor[];
   onClearChain: () => void;
 }
 
@@ -46,19 +59,10 @@ function musicianNarrative(mic: Microphone, pre: Preamp, inserts: InsertProcesso
     const insertCharacters = inserts.map(p => p.item.character.split('.')[0].toLowerCase().trim());
 
     if (inserts.length === 1) {
-      lines.push(`Through the ${insertNames[0]} — ${insertCharacters[0]}. ${inserts[0].type === 'compressor' ? 'The dynamics processing will shape how the performance breathes and moves.' : inserts[0].type === 'equalizer' ? 'The EQ gives you tonal control before the signal hits the converter.' : 'The outboard processing adds a dimension that plugins can\'t quite replicate.'}`);
+      lines.push(`Through the ${insertNames[0]} — ${insertCharacters[0]}. ${inserts[0].type === 'compressor' ? 'The dynamics processing will shape how the performance breathes and moves.' : inserts[0].type === 'equalizer' || inserts[0].type === 'preamp-eq' ? 'The EQ stage gives you tonal control before the signal hits the converter.' : 'The outboard processing adds a dimension that plugins can\'t quite replicate.'}`);
     } else {
       lines.push(`The insert chain runs through ${insertNames.join(' → ')}. Each stage adds its voice — ${insertCharacters.slice(0, 2).join(', then ')}. ${inserts.length >= 3 ? 'That\'s a lot of analog stages coloring the signal — this is going to have a very distinct, produced sound before it ever reaches the DAW.' : 'Two stages of analog processing gives you options without over-cooking.'}`);
     }
-  }
-
-  // Best-for synthesis
-  const allBestFor = [mic.best_for, pre.best_for, ...inserts.map(p => p.item.best_for)];
-  const freq = new Map<string, number>();
-  allBestFor.flat().forEach(b => freq.set(b, (freq.get(b) || 0) + 1));
-  const shared = [...freq.entries()].filter(([, c]) => c >= 2).sort((a, b) => b[1] - a[1]).map(([k]) => k);
-  if (shared.length > 0) {
-    lines.push(`Every piece here agrees on: ${shared.slice(0, 4).join(', ')}. That\'s where this chain will really shine.`);
   }
 
   return lines;
@@ -92,6 +96,7 @@ function engineerNarrative(mic: Microphone, pre: Preamp, inserts: InsertProcesso
   // Transformer cascade awareness
   const xfmrCount = (pre.has_transformer ? 1 : 0) + inserts.filter(p => {
     if (p.type === 'equalizer') return p.item.has_transformer;
+    if (p.type === 'preamp-eq') return p.item.has_transformer;
     if (p.type === 'outboard') return p.item.has_transformer;
     return false; // compressors — assume transformer for now
   }).length;
@@ -105,8 +110,8 @@ function engineerNarrative(mic: Microphone, pre: Preamp, inserts: InsertProcesso
   // Insert order wisdom
   if (inserts.length >= 2) {
     const hasComp = inserts.some(p => p.type === 'compressor');
-    const hasEQ = inserts.some(p => p.type === 'equalizer');
-    const compFirst = inserts.findIndex(p => p.type === 'compressor') < inserts.findIndex(p => p.type === 'equalizer');
+    const hasEQ = inserts.some(p => p.type === 'equalizer' || p.type === 'preamp-eq');
+    const compFirst = inserts.findIndex(p => p.type === 'compressor') < inserts.findIndex(p => p.type === 'equalizer' || p.type === 'preamp-eq');
 
     if (hasComp && hasEQ) {
       if (compFirst) {
@@ -115,15 +120,6 @@ function engineerNarrative(mic: Microphone, pre: Preamp, inserts: InsertProcesso
         lines.push('EQ before compressor — the compressor reacts to your tonal shaping. Boosting frequencies will cause more compression in those bands. Use this intentionally for de-essing, presence control, or tonal compression.');
       }
     }
-  }
-
-  // Practical application
-  const allBestFor = [mic.best_for, pre.best_for, ...inserts.map(p => p.item.best_for)];
-  const freq = new Map<string, number>();
-  allBestFor.flat().forEach(b => freq.set(b, (freq.get(b) || 0) + 1));
-  const shared = [...freq.entries()].filter(([, c]) => c >= 2).sort((a, b) => b[1] - a[1]).map(([k]) => k);
-  if (shared.length > 0) {
-    lines.push(`Strengths overlap on: ${shared.slice(0, 5).join(', ')}. Build your session around those sources and this chain will deliver.`);
   }
 
   // EM zone awareness
@@ -159,6 +155,7 @@ function technicalNarrative(mic: Microphone, pre: Preamp, inserts: InsertProcess
 
   const xfmrCount = (pre.has_transformer ? 1 : 0) + inserts.filter(p => {
     if (p.type === 'equalizer') return p.item.has_transformer;
+    if (p.type === 'preamp-eq') return p.item.has_transformer;
     if (p.type === 'outboard') return p.item.has_transformer;
     return false;
   }).length;
@@ -169,6 +166,7 @@ function technicalNarrative(mic: Microphone, pre: Preamp, inserts: InsertProcess
   if (inserts.length > 0) {
     const izNotes = inserts.map(p => {
       if (p.type === 'equalizer') return `${p.item.name}: Z_in=${p.item.input_z_ohm}Ω, Z_out=${p.item.output_z_ohm}Ω, noise=${p.item.noise_floor_db}dBu`;
+      if (p.type === 'preamp-eq') return `${p.item.name} EQ section: Z_in=${p.item.input_z_ohm}Ω, Z_out=${p.item.output_z_ohm}Ω, noise=${p.item.noise_floor_db}dBu`;
       if (p.type === 'outboard') return `${p.item.name}: Z_in=${p.item.input_z_ohm}Ω, Z_out=${p.item.output_z_ohm}Ω, noise=${p.item.noise_floor_db}dBu`;
       return `${p.item.name}: (compressor — impedance specs not yet characterized)`;
     });
@@ -188,19 +186,59 @@ function chainSummary(mic: Microphone, pre: Preamp, inserts: InsertProcessor[]):
   return parts.join(' → ');
 }
 
+function parallelSummary(parallelChain: ParallelProcessor[]): string | null {
+  if (parallelChain.length === 0) return null;
+  return parallelChain.map((proc) => `${proc.item.name} via ${proc.routing.return_destination_label}`).join(' + ');
+}
+
+function parallelNarrative(perspective: Perspective, parallelChain: ParallelProcessor[]): string[] {
+  if (parallelChain.length === 0) return [];
+
+  if (perspective === 'musician') {
+    return parallelChain.map((proc) => `In parallel, ${proc.item.name} is tapped from ${proc.routing.send_source_label} and blended back through ${proc.routing.return_destination_label}, so its character supplements the dry chain instead of replacing it.`);
+  }
+
+  if (perspective === 'engineer') {
+    return parallelChain.map((proc) => `Parallel path: ${proc.item.name} is fed from ${proc.routing.send_source_label} and returns via ${proc.routing.return_destination_label}. The original source path remains intact while this branch adds supplemental texture, space, or control.`);
+  }
+
+  return parallelChain.map((proc) => `Parallel branch: ${proc.item.name} taps ${proc.routing.send_source_label} and resolves at ${proc.routing.return_destination_label}. It does not alter the primary mic → preamp → insert electrical path; it creates a secondary line-level branch that is summed alongside it.`);
+}
+
 export default function AnalysisPanel({
-  perspective, analysis, selectedMic, selectedPreamp, insertChain, onClearChain,
+  perspective, analysis, routeSummary, perspectiveInsight, selectedMic, selectedPreamp, insertChain, parallelChain, onClearChain,
 }: Props) {
+  const [showRouteNotes, setShowRouteNotes] = useState(false);
+  const [showNarrativeDetails, setShowNarrativeDetails] = useState(false);
+  const hasRouteNotes =
+    routeSummary.deviations.length > 0 ||
+    routeSummary.validation_issues.length > 0 ||
+    routeSummary.available_next_actions.length > 0;
+
   if (!analysis || !selectedMic || !selectedPreamp) {
     return (
-      <div className="border-t border-zinc-800 bg-zinc-900/70 px-4 py-3">
+      <div className="border-t border-zinc-800 bg-zinc-950/72 px-4 py-3 space-y-2 backdrop-blur">
+        <div className="rounded-xl border border-zinc-800 bg-zinc-950/70 px-3 py-3">
+          <div className="flex items-center justify-between gap-3">
+            <span className="text-[10px] uppercase tracking-[0.22em] text-zinc-500">Route status</span>
+            <span className="text-[10px] rounded border border-zinc-800 bg-zinc-900 px-2 py-0.5 text-zinc-400">{routeSummary.status}</span>
+          </div>
+          <p className="mt-2 text-sm text-zinc-300">{routeSummary.headline}</p>
+          {routeSummary.available_next_actions.length > 0 && (
+            <div className="mt-2 flex flex-wrap gap-1">
+              {routeSummary.available_next_actions.slice(0, 2).map((action) => (
+                <span key={action} className="text-[10px] px-1.5 py-0.5 rounded border border-zinc-800 bg-zinc-900 text-zinc-400">{action}</span>
+              ))}
+            </div>
+          )}
+        </div>
         <div className="flex items-center justify-between">
-          <span className="text-xs text-zinc-500">
-            {selectedMic ? `${selectedMic.name} selected — pick a preamp to analyze` : 'Select mic + preamp to see chain analysis'}
+          <span className="text-xs text-zinc-500 leading-relaxed">
+            {selectedMic ? `${selectedMic.name} is in circuit. Pair it with a preamp and the route will begin to declare its character, gain structure, and constraints.` : 'Begin anywhere that makes sense to you. Once a selection establishes a meaningful path, the route readout and analysis will answer to it.'}
           </span>
-          {(selectedMic || selectedPreamp || insertChain.length > 0) && (
-            <button onClick={onClearChain} className="text-[10px] text-zinc-500 hover:text-zinc-300 border border-zinc-700 rounded px-2 py-0.5">
-              Clear chain
+          {(selectedMic || selectedPreamp || insertChain.length > 0 || parallelChain.length > 0) && (
+            <button onClick={onClearChain} className="text-[10px] text-zinc-500 hover:text-zinc-300 border border-zinc-800 rounded-full px-2.5 py-1">
+              Clear
             </button>
           )}
         </div>
@@ -213,11 +251,13 @@ export default function AnalysisPanel({
     : perspective === 'engineer'
     ? engineerNarrative(selectedMic, selectedPreamp, insertChain, analysis)
     : technicalNarrative(selectedMic, selectedPreamp, insertChain, analysis);
+  const leadNarrative = narrativeLines[0];
+  const supportingNarrative = narrativeLines.slice(1);
 
   const perspectiveLabels: Record<Perspective, string> = {
-    musician: '🎵 What This Chain Sounds Like',
-    engineer: '🎛️ Signal Chain Assessment',
-    technical: '⚡ Electrical Analysis',
+    musician: 'What this chain feels like',
+    engineer: 'What matters in the route',
+    technical: 'Electrical readout',
   };
 
   const perspectiveAccents: Record<Perspective, string> = {
@@ -232,42 +272,152 @@ export default function AnalysisPanel({
     technical: 'text-emerald-300',
   };
 
+  const viabilityStyles = {
+    ok: 'text-emerald-300 border-emerald-800/40 bg-emerald-950/20',
+    caution: 'text-yellow-300 border-yellow-800/40 bg-yellow-950/20',
+    blocked: 'text-red-300 border-red-800/40 bg-red-950/20',
+  };
+
+  const parallelLines = parallelNarrative(perspective, parallelChain);
+  const parallelPathSummary = parallelSummary(parallelChain);
+
   return (
-    <div className="border-t border-zinc-800 bg-zinc-900/70 px-4 py-3 space-y-3 max-h-64 overflow-y-auto">
-      {/* Header */}
-      <div className="flex items-center justify-between">
-        <div className="flex items-center gap-3">
-          <span className={`text-xs font-medium ${textAccents[perspective]}`}>
-            {perspectiveLabels[perspective]}
-          </span>
-          <span className="text-[10px] text-zinc-600 font-mono">
-            {chainSummary(selectedMic, selectedPreamp, insertChain)}
-          </span>
+    <div className="border-t border-zinc-800 bg-zinc-950/72 px-4 py-3 space-y-3 max-h-72 overflow-y-auto backdrop-blur">
+      <div className="flex items-start justify-between gap-3">
+        <div className="min-w-0 space-y-1">
+          <div className={`text-[10px] font-medium uppercase tracking-[0.22em] ${textAccents[perspective]}`}>{perspectiveLabels[perspective]}</div>
+          <div className="text-[11px] text-zinc-500 font-mono break-words">{chainSummary(selectedMic, selectedPreamp, insertChain)}</div>
+          {parallelPathSummary && <div className="text-[11px] text-cyan-300/90">Parallel support: {parallelPathSummary}</div>}
         </div>
-        <button onClick={onClearChain} className="text-[10px] text-zinc-500 hover:text-zinc-300 border border-zinc-700 rounded px-2 py-0.5">
-          Clear chain
+        <button onClick={onClearChain} className="text-[10px] text-zinc-500 hover:text-zinc-300 border border-zinc-800 rounded-full px-2.5 py-1 shrink-0">
+          Clear
         </button>
       </div>
 
-      {/* Warnings (always visible) */}
+      <div className="grid gap-3 xl:grid-cols-2">
+        <div className="rounded-xl border border-zinc-800 bg-zinc-950/70 px-3 py-3 space-y-2">
+          <div className="flex items-center justify-between gap-3">
+            <span className="text-[10px] uppercase tracking-[0.22em] text-zinc-500">Route status</span>
+            <span className="text-[10px] rounded border border-zinc-800 bg-zinc-900 px-2 py-0.5 text-zinc-400">{routeSummary.status}</span>
+          </div>
+          <p className="text-sm text-zinc-200">{routeSummary.headline}</p>
+          <div className={`rounded-lg border px-2.5 py-2 text-[11px] ${viabilityStyles[routeSummary.viability_flag.level]}`}>
+            {routeSummary.viability_flag.reason}
+          </div>
+          {routeSummary.gain_margin_summary && <div className="text-[11px] text-zinc-400">{routeSummary.gain_margin_summary}</div>}
+          {routeSummary.available_next_actions.length > 0 && (
+            <div className="flex flex-wrap gap-1">
+              {routeSummary.available_next_actions.slice(0, 3).map((action) => (
+                <span key={action} className="text-[10px] px-1.5 py-0.5 rounded border border-zinc-800 bg-zinc-900 text-zinc-400">{action}</span>
+              ))}
+            </div>
+          )}
+        </div>
+
+        <div className={`rounded-xl border p-3 space-y-2 ${perspectiveAccents[perspective]}`}>
+          <div className="text-[10px] uppercase tracking-[0.22em] text-zinc-500">First reading</div>
+          <p className={`text-sm leading-relaxed ${textAccents[perspective]}`}>{leadNarrative}</p>
+          <p className="text-[11px] leading-relaxed text-zinc-400">{perspectiveInsight.summary}</p>
+          {parallelLines.length > 0 && (
+            <div className="rounded-lg border border-cyan-800/30 bg-cyan-950/20 px-2.5 py-2 text-[11px] leading-relaxed text-cyan-100/90">
+              {parallelLines[0]}
+            </div>
+          )}
+          {(supportingNarrative.length > 0 || parallelLines.length > 1) && (
+            <button
+              onClick={() => setShowNarrativeDetails((value) => !value)}
+              className="text-[10px] text-zinc-500 hover:text-zinc-300 border border-zinc-800 rounded-full px-2.5 py-1 bg-zinc-900/40"
+            >
+              {showNarrativeDetails ? 'Less detail' : 'More detail'}
+            </button>
+          )}
+        </div>
+      </div>
+
+      {showNarrativeDetails && (supportingNarrative.length > 0 || parallelLines.length > 1) && (
+        <div className={`rounded-xl border p-3 space-y-2 ${perspectiveAccents[perspective]}`}>
+          {supportingNarrative.map((line, i) => (
+            <p key={i} className="text-sm leading-relaxed text-zinc-300">{line}</p>
+          ))}
+          {parallelLines.slice(1).map((line) => (
+            <p key={line} className="text-sm leading-relaxed text-cyan-100/90">{line}</p>
+          ))}
+        </div>
+      )}
+
+      {hasRouteNotes && (
+        <div>
+          <button
+            onClick={() => setShowRouteNotes((value) => !value)}
+            className="text-[10px] text-zinc-500 hover:text-zinc-300 border border-zinc-800 rounded-full px-2.5 py-1 bg-zinc-900/40"
+          >
+            {showRouteNotes ? 'Hide route trace' : 'Show route trace'}
+          </button>
+        </div>
+      )}
+
+      {showRouteNotes && hasRouteNotes && (
+        <div className="rounded-xl border border-zinc-800 bg-zinc-950/60 px-3 py-3 space-y-2">
+            {routeSummary.active_path.length > 0 && (
+              <div className="flex flex-wrap items-center gap-1 text-[10px] text-zinc-400">
+                {routeSummary.active_path.map((stage, index) => (
+                  <span key={stage.id} className="contents">
+                    {index > 0 && <span className="text-zinc-600">→</span>}
+                    <span className="rounded border border-zinc-800 bg-zinc-900 px-1.5 py-0.5">{stage.label}</span>
+                  </span>
+                ))}
+              </div>
+            )}
+            {routeSummary.parallel_paths.length > 0 && (
+              <div className="space-y-1">
+                {routeSummary.parallel_paths.map((path, index) => (
+                  <div key={`parallel-${index}`} className="flex flex-wrap items-center gap-1 text-[10px] text-cyan-300/90">
+                    <span className="text-cyan-500 uppercase tracking-wide">Parallel</span>
+                    {path.map((stage, stageIndex) => (
+                      <span key={stage.id} className="contents">
+                        {stageIndex > 0 && <span className="text-cyan-700">→</span>}
+                        <span className="rounded border border-cyan-900/50 bg-cyan-950/20 px-1.5 py-0.5">{stage.label}</span>
+                      </span>
+                    ))}
+                  </div>
+                ))}
+              </div>
+            )}
+            {routeSummary.deviations.length > 0 && (
+              <div className="space-y-1">
+                {routeSummary.deviations.map((deviation) => (
+                  <p key={deviation} className="text-[11px] text-zinc-500">{deviation}</p>
+                ))}
+              </div>
+            )}
+            {routeSummary.validation_issues.length > 0 && (
+              <div className="space-y-1">
+                {routeSummary.validation_issues.slice(0, 2).map((issue) => (
+                  <p key={`${issue.code}-${issue.message}`} className="text-[11px] text-zinc-500">
+                    {issue.suggested_action ? `${issue.message} ${issue.suggested_action}` : issue.message}
+                  </p>
+                ))}
+              </div>
+            )}
+            {routeSummary.available_next_actions.length > 0 && (
+              <div className="flex flex-wrap gap-1">
+                {routeSummary.available_next_actions.slice(0, 3).map((action) => (
+                  <span key={action} className="text-[10px] px-1.5 py-0.5 rounded border border-zinc-800 bg-zinc-900 text-zinc-400">{action}</span>
+                ))}
+              </div>
+            )}
+        </div>
+      )}
+
       {analysis.warnings.length > 0 && perspective !== 'technical' && (
         <div className="space-y-1">
           {analysis.warnings.map((w, i) => (
-            <div key={i} className="text-[11px] text-yellow-300 bg-yellow-900/15 border border-yellow-700/25 rounded px-2 py-1">
+            <div key={i} className="text-[11px] text-yellow-300 bg-yellow-900/15 border border-yellow-700/25 rounded-lg px-2.5 py-2">
               ⚠ {w}
             </div>
           ))}
         </div>
       )}
-
-      {/* Narrative body */}
-      <div className={`border rounded-lg p-3 space-y-2 ${perspectiveAccents[perspective]}`}>
-        {narrativeLines.map((line, i) => (
-          <p key={i} className={`text-sm leading-relaxed ${i === 0 ? textAccents[perspective] : 'text-zinc-300'}`}>
-            {line}
-          </p>
-        ))}
-      </div>
     </div>
   );
 }

@@ -1,4 +1,4 @@
-const CACHE_NAME = 'studio-twin-v1';
+const CACHE_NAME = 'signal-atlas-v1';
 const ASSETS = [
   './',
   './index.html',

@@ -19,6 +19,9 @@ export const preamps: Preamp[] = [
     em_zone: 'B',
     character: 'Maximum harmonic weight. Thick, warm, and dimensional. The tube sound at its fullest.',
     engineering: 'All-valve signal path — zero solid-state in audio. High-voltage tube rails. Transformer I/O. 1–1.2kΩ mic input, 10kΩ line, 100kΩ DI. Pentode "Attitude" mode adds up to 87dB gain with heavy saturation.',
+    tendencies: ['maximum tube density', 'large dimensional low-mid weight', 'easy movement from rich to overtly saturated'],
+    tradeoffs: ['can overpower already-thick sources', 'less neutral than cleaner valve or solid-state paths', 'bigger tube footprint and heat come with the sound'],
+    workflow_implications: ['best when the source should arrive with obvious attitude already attached', 'worth reserving for featured tracks instead of routine utility gain', 'driving attitude mode changes both tone and gain staging significantly'],
     best_for: ['vocals', 'bass DI', 'room mics', 'anything needing tube weight'],
   },
   // ⚠️ Reclassified: discrete-ss (Helios Type 69 is solid-state, not tube)
@@ -41,6 +44,9 @@ export const preamps: Preamp[] = [
     heritage: 'Clone of the Helios Type 69 — the input module from the silver Olympic Studios desk designed by Dick Swettenham (1969). Used for Led Zeppelin II–IV, Rolling Stones, Hendrix. Fewer than 50 Helios consoles were ever built.',
     character: 'The sound of Olympic Studios — punchy, thick, and euphonically colored. Fat low-mids and a forward, gutsy presence. When pushed, it breaks up with musical grit that flatters drums and aggressive vocals.',
     engineering: 'Discrete Class A solid-state — NOT a tube circuit (commonly misidentified). Sowter Lustraphone-type transformers on I/O provide iron coloration. Single-ended discrete transistor gain stage. 3-band inductor EQ integral to the module. 1,200Ω mic input impedance.',
+    tendencies: ['fat low-mid punch', 'forward rock-oriented presence', 'musical transformer grit when driven'],
+    tradeoffs: ['color is always part of the deal', 'integrated EQ and preamp make it less casual as a neutral front end', 'can crowd dense arrangements if everything is tracked through it'],
+    workflow_implications: ['useful when the source should sound record-ready and assertive before mix decisions', 'built-in EQ encourages shaping early rather than later', 'good contrast option against cleaner preamps when deciding how much personality belongs at capture'],
     best_for: ['drums', 'bass', 'electric guitar', 'rock vocals', 'anything needing punch and color'],
   },
   {
@@ -59,6 +65,9 @@ export const preamps: Preamp[] = [
     em_zone: 'B',
     character: 'Aggressive tube saturation when pushed. Clean at low gain, filthy at high gain. The "rooster" sound.',
     engineering: 'All-valve. Input valve: 12AX7/ECC83 (verify — some units have ECC81/12AT7). Transformer I/O. At 3.5:1 bridging with a ribbon mic, bass character changes dramatically.',
+    tendencies: ['wide swing from clean valve tone to overt drive', 'aggressive harmonic breakup', 'strong personality under push'],
+    tradeoffs: ['less subtle than more controlled tube designs', 'ribbon interaction changes audibly because of impedance relationship', 'easy to overcommit to saturation too early'],
+    workflow_implications: ['good when capture should already carry edge and distortion texture', 'gain decisions matter more here than on polite preamps', 'worth checking ribbon pairing before assuming the mic is the variable'],
     best_for: ['guitar', 'drums', 'bass', 'aggressive vocals'],
   },
   {
@@ -79,6 +88,9 @@ export const preamps: Preamp[] = [
     heritage: 'Designed by Jon Erickson of A-Designs Audio (West Hills, CA). A unique all-tube topology — not a clone of any vintage circuit. The EF86 pentode input stage sets it apart from every triode-input preamp on the market.',
     character: 'Rich, complex, and dimensional. The EF86 pentode delivers harmonics that triode-only designs cannot — thick mids, silky top, and a three-dimensional depth that sits vocals perfectly in a mix. Four switchable tone colors from a single unit.',
     engineering: 'All-valve "True Tube": EF86 pentode input → 12BH7 dual-triode output stage. Zero ICs, transistors, or solid-state in audio path. Cinemag custom I/O transformers. Point-to-point wiring, film capacitors. ~1,200Ω mic input. Hi-Z DI input routes direct to transformer. External PSU with custom toroidal transformer. -20dB pad, 48V phantom, phase switch.',
+    tendencies: ['complex harmonic depth', 'silky but dense top-to-mid presentation', 'multiple usable tonal colors inside one unit'],
+    tradeoffs: ['external PSU and tube architecture slow purely practical sessions', 'not the right fit when transparency is the point', 'can make already-rich sources feel over-decorated'],
+    workflow_implications: ['strong candidate for featured vocals or DI sources that need dimension early', 'tone-color switching makes it useful for comparison without repatching', 'best when the session benefits from committing to texture rather than postponing it'],
     best_for: ['vocals', 'acoustic instruments', 'room mics', 'DI bass and keys', 'anything needing harmonic density'],
   },
 
@@ -101,6 +113,9 @@ export const preamps: Preamp[] = [
     em_zone: 'B',
     character: 'Swiss army knife. Clean to warm depending on tube/transformer drive. Split-section routing gives immense flexibility.',
     engineering: 'Hybrid tube/solid-state. Jensen nickel-core transformers. Independently routable sections (mic pre, EQ, line amp). 2,400Ω input — good for most mic types.',
+    tendencies: ['broad range from clean to gently warmed', 'modular channel-strip behavior', 'high flexibility without abandoning quality'],
+    tradeoffs: ['depth of options can slow quick decisions', 'less singular personality than more extreme preamps', 'routing power is wasted if used only as a simple gain block'],
+    workflow_implications: ['excellent problem-solving tool when the session needs one box to cover several jobs', 'split routing rewards intentional signal-flow planning', 'good first-call utility when you want flexibility before committing to heavier coloration'],
     best_for: ['everything — most flexible preamp in the studio'],
   },
   {
@@ -119,6 +134,9 @@ export const preamps: Preamp[] = [
     em_zone: 'B',
     character: 'Creamy tube saturation (hence the name). Smooth, musical distortion character.',
     engineering: 'Tube gain stage + solid-state output. Transformer-balanced. 2,400Ω input.',
+    tendencies: ['smooth rounded tube saturation', 'musical rather than abrasive distortion behavior', 'friendly top-end smoothing'],
+    tradeoffs: ['less dramatic than more aggressive tube boxes', 'can soften transient edges more than intended', 'not ideal where ultimate neutrality or speed is required'],
+    workflow_implications: ['good when a source needs warmth without turning into fuzz', 'useful bridge between transparent and heavily colored front ends', 'worth comparing against all-valve options when you want tube feel with easier control'],
     best_for: ['vocals', 'bass', 'synths'],
   },
   // ⚠️ Reclassified: discrete-ss per unit inspection (no tube in circuit)
@@ -141,6 +159,9 @@ export const preamps: Preamp[] = [
     heritage: 'Designed by Jon Erickson of A-Designs Audio. The SE (Special Edition) features upgraded Jensen and Cinemag transformers. Bridges the gap between the transparent Pacifica and the all-tube MP-2A in the A-Designs lineup.',
     character: 'Versatile single-channel workhorse with transformer coloration. Three inputs (Mic/Line/DI) route through a single discrete gain stage to three independent balanced outputs. Warm and musical without being dark — the iron adds body and dimension.',
     engineering: 'Discrete solid-state with Jensen input transformer (mic) and Cinemag output transformer. 3-in/3-out topology: Mic (~1,500Ω), Line (~10kΩ), DI (~1MΩ hi-Z) each with dedicated balanced XLR output. Single signal path — not 3 separate preamp channels. 72dB max gain.',
+    tendencies: ['warm transformer-supported versatility', 'single-channel utility across mic line and DI tasks', 'body without obvious murk'],
+    tradeoffs: ['single-path architecture can be misread as more channels than it is', 'not as pristine as transformerless options', 'one channel limits stereo workflow unless paired with something else'],
+    workflow_implications: ['useful as an all-purpose front end when sessions jump between sources quickly', 'good DI and line utility makes it valuable beyond microphone duty', 'understanding the 3-in/3-out topology avoids routing assumptions'],
     best_for: ['tracking versatility', 'vocals', 'DI bass and keys', 'line-level re-amping', 'acoustic guitar'],
   },
   {
@@ -159,6 +180,9 @@ export const preamps: Preamp[] = [
     em_zone: 'B',
     character: 'Tube comp/preamp combo. Warm FET gain reduction with tube makeup.',
     engineering: 'Only 1×12AX7 tube, FET gain reduction. Reclassified from Zone A to Zone B — very low magnetic field despite tube.',
+    tendencies: ['combined preamp and compression flavor', 'warm controlled dynamic handling', 'more about finish than raw gain personality'],
+    tradeoffs: ['less a pure mic pre than a shaped dynamics path', 'limited gain range compared with dedicated preamps', 'hybrid identity can confuse expectations if treated like a standalone coloration pre'],
+    workflow_implications: ['useful when the source wants both gain and immediate dynamic containment', 'best approached as a compound path instead of isolated preamp choice', 'good for sessions where committing gentle control early saves later juggling'],
     best_for: ['bus compression', 'vocals', 'stereo mix'],
   },
 
@@ -180,6 +204,9 @@ export const preamps: Preamp[] = [
     heritage: 'Designed by Wade Goeke of Chandler Limited (Shelbyville, Iowa). Germanium transistors are period-correct to 1950s–60s era, before silicon transistors dominated. The Germanium Pre reimagines early transistor electronics in a modern recording tool.',
     character: 'Germanium transistors give a thick, slightly fuzzy tone utterly unlike silicon. Pushes into musical distortion beautifully — not harsh or brittle, but warm and woolly. The Feedback/Thick switch takes it from "heavy" to "heavier." Two units allow stereo germanium saturation.',
     engineering: 'Germanium PNP junction transistors. Transformer-coupled. 600Ω input — ⚠️ caution with ribbons (2:1 bridging ratio with 300Ω source loads the ribbon more than higher-Z preamps). Feedback/Thick switch changes negative feedback amount, altering distortion character and gain structure.',
+    tendencies: ['woolly thick germanium color', 'musical distortion under push', 'distinctly non-silicon transistor texture'],
+    tradeoffs: ['600Ω input is unfriendly to some ribbons', 'strong color makes it a deliberate choice rather than a neutral one', 'easy to crowd a mix if overused across many sources'],
+    workflow_implications: ['best when the goal includes audible transistor character, not merely amplification', 'ribbon pairings need extra scrutiny', 'feedback/thick settings materially change the capture path rather than acting like subtle seasoning'],
     best_for: ['drums', 'guitar', 'bass', 'anything you want to push into musical distortion'],
   },
   {
@@ -199,6 +226,9 @@ export const preamps: Preamp[] = [
     heritage: 'Second unit — pair enables stereo germanium recording or two channels of colored tracking.',
     character: 'Same germanium character as #1. Pair for stereo drum overheads through germanium saturation, or use independently on different sources.',
     engineering: 'Identical to unit #1. Match settings for stereo operation.',
+    tendencies: ['same thick germanium color as unit #1', 'stereo-capable vintage transistor texture', 'strong pairable character source'],
+    tradeoffs: ['same ribbon-loading caution applies here too', 'stereo use can magnify coloration if overapplied', 'requires careful matching when used as a pair'],
+    workflow_implications: ['most valuable when used intentionally as a matched stereo color option', 'good companion to #1 for overheads or parallel character tracking', 'settings need to be treated precisely if stereo image stability matters'],
     best_for: ['drums', 'guitar', 'bass', 'stereo germanium tracking'],
   },
   {
@@ -219,6 +249,9 @@ export const preamps: Preamp[] = [
     heritage: 'API founded by Saul Walker in 1968. The 2520 discrete op-amp is the DNA of the API sound — a hand-wired replacement for IC op-amps that defined the punchy American studio character of the 1970s.',
     character: 'The API sound: punchy, present, and immediately "finished." Transients crack, guitars jump, drums hit. That distinctive forward midrange cuts through any mix without trying.',
     engineering: 'Discrete Class A/B built around the API 2520 op-amp (vintage variant). API custom-wound transformers: AP2516 input, AP2503 output. 1,500Ω mic input. Switchable 48V phantom, polarity, -20dB pad. +30dBu max output with ~20dB headroom above nominal.',
+    tendencies: ['fast punchy transient emphasis', 'forward American midrange presence', 'finished-feeling source projection'],
+    tradeoffs: ['not the most forgiving option for already hard or sharp sources', 'color is subtle only if compared to even more colored units', 'can bias everything toward the same assertive contour if overused'],
+    workflow_implications: ['great first-call choice when a source needs energy and definition immediately', 'pad and headroom make it easy to use on loud material', 'useful benchmark against slower or softer preamps when deciding how much attack the track should carry'],
     best_for: ['drums', 'electric guitar', 'bass', 'snare', 'anything needing punch and presence'],
   },
   {
@@ -239,6 +272,9 @@ export const preamps: Preamp[] = [
     heritage: 'Designed by Bruce Seifried, Eclair Engineering (Williamsburg, MA, since 1991). Tube Class A topology — NOT a Neve-based design. Jensen transformer modifications are aftermarket upgrades adding different iron character to the stock unit.',
     character: 'Fat, warm, and unapologetically colored. Tube Class A with Jensen iron on both input and output creates a unique saturation character — not Neve, not API, distinctly "Evil Twin." Harmonics are complex and musical, especially on vocals and guitar.',
     engineering: '⚠️ Desktop unit, NOT 19" rack mount. Tube Class A gain stage with Jensen JT-115K-E input transformer (mic mod replacing stock) + Jensen nickel-core output transformer. Reclassified hybrid-tube — tube is the primary gain element with transformer I/O.',
+    tendencies: ['fat harmonically dense coloration', 'distinct non-Neve non-API tube identity', 'strong guitar and vocal personality'],
+    tradeoffs: ['desktop format is less convenient in a rack-centric workflow', 'commits audible character quickly', 'not the choice for invisible capture or clinical repeatability'],
+    workflow_implications: ['good when you want the preamp to be part of the performance feel', 'physical desktop format changes how and where it gets used', 'Jensen-modded iron makes it worth comparing directly against cleaner and more familiar colored pres'],
     best_for: ['vocals', 'guitar', 'character recording', 'bass DI'],
   },
   {
@@ -259,6 +295,9 @@ export const preamps: Preamp[] = [
     heritage: 'Second Evil Twin with identical Jensen modifications — pair enables stereo tube tracking or two channels of colored character.',
     character: 'Same Jensen-modded Evil Twin character as #1. Pair for stereo saturation.',
     engineering: 'Identical Jensen mod to unit #1. Match settings for stereo operation.',
+    tendencies: ['same fat hybrid-tube character as unit #1', 'stereo-capable saturated warmth', 'complex harmonic density as a pair'],
+    tradeoffs: ['same desktop and heavy-color tradeoffs apply', 'stereo use can overwhelm a source if the color is too much', 'needs careful matching for pair consistency'],
+    workflow_implications: ['valuable when stereo capture wants obvious character, not just coverage', 'best treated as a deliberate pair rather than two generic channels', 'matching gain and tone settings matters if image coherence is important'],
     best_for: ['vocals', 'guitar', 'stereo character recording'],
   },
   {
@@ -278,6 +317,9 @@ export const preamps: Preamp[] = [
     em_zone: 'B',
     character: 'Transparent and clean. You hear the microphone, not the preamp. The ribbon specialist.',
     engineering: 'Transformerless output. 5,000Ω input (10kΩ in Hi-Z mode). Ideal ribbon preamp: high Z, no transformer loading. 16.7:1 bridging with Coles 4038.',
+    tendencies: ['very low editorial footprint', 'high-impedance ribbon friendliness', 'microphone-first presentation'],
+    tradeoffs: ['will not flatter weak sources for you', 'less emotionally obvious than colored pres in quick comparisons', 'can feel stark if a session expects saturation at capture'],
+    workflow_implications: ['excellent when you need to learn what the microphone is actually doing', 'high input impedance makes it a strong ribbon reference path', 'useful control condition against colored pres during shootouts'],
     best_for: ['ribbons', 'transparent recording', 'classical', 'acoustic'],
   },
   {
@@ -297,6 +339,9 @@ export const preamps: Preamp[] = [
     em_zone: 'B',
     character: 'Neve-inspired inductor EQ sound. Thick low end, silky highs. The "big console" tone.',
     engineering: 'Discrete Class A. Inductor EQ with Neve-style frequency points. Transformer-coupled.',
+    tendencies: ['big console-style weight', 'silky top-end shaping', 'musical inductor EQ coloration'],
+    tradeoffs: ['less precise than cleaner or more surgical paths', 'strong tone can dominate if stacked across many channels', 'integrated EQ invites early commitment'],
+    workflow_implications: ['useful when tracking decisions should already include broad tone shaping', 'good for sources that benefit from size rather than neutrality', 'best compared against cleaner preamps if the arrangement is already dense'],
     best_for: ['drums', 'bass', 'vocals', 'mix bus EQ'],
   },
   {
@@ -318,6 +363,9 @@ export const preamps: Preamp[] = [
     heritage: 'Built by Wunder Audio (Austin, TX) as a faithful Neve 1081 4-band preamp/EQ recreation. Proprietary NICO output transformer wound to original Neve specifications. The 4-band sibling of the PEQ2R.',
     character: 'The Neve 1081 sound, refined. Four bands of inductor EQ with the big, warm, iron-colored bottom and silky top. More surgical than the 2-band PEQ2R while retaining all the musicality.',
     engineering: 'Discrete Class A. Carnhill/St. Ives input transformer, NICO output transformer. 4-band inductor EQ with classic Neve 1081 frequency selections. 1,500Ω mic input. The 4-band topology allows overlapping mid-frequency sculpting unavailable in the 2-band PEQ2R.',
+    tendencies: ['large Neve-style tone with more shaping range', 'warm bottom and polished top', 'musical but more directed sculpting than simpler inductor paths'],
+    tradeoffs: ['more decisions at capture can slow tracking', 'still a colored front end rather than a neutral surgical device', 'easy to over-shape if you solve mix problems too early'],
+    workflow_implications: ['best when tracking should include intentional contour, not just gain', 'useful for sources that need tone placement before they hit the DAW', 'four-band flexibility makes it more surgical than the PEQ2R without abandoning the big-console feel'],
     best_for: ['drums', 'bass', 'vocals', 'tracking with surgical EQ', 'mix bus sculpting'],
   },
 
@@ -338,6 +386,9 @@ export const preamps: Preamp[] = [
     em_zone: 'B',
     character: 'Ultra-transparent. DC-coupled for zero phase shift at any frequency. Surgical.',
     engineering: 'DC-coupled, transformerless. 5,000Ω input. Electronically balanced output.',
+    tendencies: ['extreme transparency', 'very little phase coloration', 'high-impedance compatibility with delicate sources'],
+    tradeoffs: ['offers no flattering cushion by itself', 'can feel clinically plain next to colored pres', 'transparency exposes source and room problems immediately'],
+    workflow_implications: ['useful when the goal is capture accuracy or controlled comparison', 'strong choice for ribbons and reference-style recording', 'good reality check against more charismatic preamps during selection'],
     best_for: ['ribbons', 'measurement', 'classical', 'mastering-quality tracking'],
   },
   {
@@ -358,6 +409,9 @@ export const preamps: Preamp[] = [
     heritage: 'Undertone Audio (Portland, OR). The MPEQ-1 combines a DC-coupled transparent preamp with an independent EQ section — the SEP (Separate) mode lets you patch the preamp and EQ as two independent devices via the patchbay.',
     character: 'Transparent, revealing, and surgically clean — captures the source with zero coloration. The built-in EQ in SEP mode becomes an independent outboard processor, effectively giving you two tools in one box.',
     engineering: 'DC-coupled, transformerless. 5,000Ω input. SEP mode breaks the preamp→EQ chain, routing each to independent patchbay I/O. The preamp alone is among the most transparent available. Two units with SEP mode gives 4 independent processing blocks.',
+    tendencies: ['transparent capture with modular routing intelligence', 'utility beyond simple preamp duty', 'clean surgical front-end behavior'],
+    tradeoffs: ['SEP mode complexity can be underused or mispatched', 'less romantic than transformer or tube designs', 'strong flexibility can slow simple sessions if overthought'],
+    workflow_implications: ['best when routing flexibility is part of the value proposition, not just an incidental bonus', 'excellent for sessions that may split preamp and EQ roles across the patchbay', 'works well as a clean baseline while still expanding system capability'],
     best_for: ['tracking with EQ', 'versatile routing', 'transparent recording', 'ribbons'],
   },
   {
@@ -378,6 +432,9 @@ export const preamps: Preamp[] = [
     heritage: 'Second MPEQ-1 — pair provides stereo transparent preamp + 2 independent EQ sections (4 processing blocks total in SEP mode).',
     character: 'Same transparent character as #1. Pair for stereo operation or 4 independent blocks via dual SEP mode.',
     engineering: 'Identical to unit #1. Dual SEP mode: 2 preamps + 2 EQs = 4 independent patch points.',
+    tendencies: ['same transparent modular behavior as unit #1', 'pairable clean stereo capture', 'expanded routing density through dual SEP mode'],
+    tradeoffs: ['same transparency and complexity tradeoffs apply', 'pair value depends on actually using the routing flexibility', 'requires deliberate setup if stereo parity matters'],
+    workflow_implications: ['especially useful when stereo transparency and independent EQ routing are both needed', 'worth thinking of as system infrastructure, not just another preamp channel', 'good pair when patchbay experimentation needs clean anchor points'],
     best_for: ['stereo tracking', 'versatile routing', 'transparent recording'],
   },
   {
@@ -399,6 +456,9 @@ export const preamps: Preamp[] = [
     heritage: 'Designed by Paul Wolff, former API engineer and founder of Tonelux (Gardena, CA). The Tilt EQ — a single control shifting spectral center of gravity — became his signature circuit concept. Currently housed in A-Designs 503HR chassis.',
     character: 'Clean, focused, and immediate. The built-in Tilt EQ is ingenious — one knob rocks the frequency balance from warm to bright, like tilting a seesaw. Separate gain and output fader controls let you drive the preamp stage independently of output level.',
     engineering: 'Discrete solid-state, 500-series (VPR Alliance). Transformer-coupled mic in and out. 20dB pad, 48V phantom, polarity switch. Inner knob = mic pre gain, outer fader = output level. 8-segment LED meter (adjustable to +28 VU), peak LED at +18dBu. Front-panel combo XLR/DI for hi-Z instruments. Tilt EQ bypasses via hard-wire switch.',
+    tendencies: ['focused immediate solid-state tone', 'fast broad tonal rebalancing via tilt EQ', 'drive-friendly gain/output separation'],
+    tradeoffs: ['tilt control is broad rather than surgical', 'single channel limits stereo use', 'EM Zone A placement may require more environmental awareness than calmer gear'],
+    workflow_implications: ['excellent when you need quick tonal steering without diving into multi-band EQ', 'separate gain and output make saturation choices easier to manage', 'strong session-speed tool for DI and microphone tasks that need rapid warm-to-bright decisions'],
     best_for: ['vocals', 'acoustic guitar', 'quick tracking with instant EQ', 'on-the-fly tone shaping', 'DI instruments'],
   },
 ];

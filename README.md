@@ -1,73 +1,36 @@
-# React + TypeScript + Vite
+# Signal Atlas
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Signal Atlas is a standalone educational studio signal-flow reference. It is designed to help a user read a patchbay, understand what a routing choice actually does, and compare how circuit selection changes sonic character before the signal ever reaches the recorder.
 
-Currently, two official plugins are available:
+The current app is intentionally patchbay-first. It treats the patchbay as both the builder and the teaching surface: normalled paths stay visible, insert decisions have consequences, and different perspectives explain the same chain in musical, engineering, or technical language.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Product Focus
 
-## React Compiler
+- Teach how a real patchbay is read from row to row and left to right
+- Show how default normalling differs from an explicitly patched route
+- Explain what microphones, preamps, EQs, compressors, and parallel returns are doing in the path
+- Surface sonic character as a consequence of circuit selection, not marketing adjectives alone
+- Serve as a guide, reference, and training tool rather than a static gear catalog
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Current Scope
 
-## Expanding the ESLint configuration
+- Patchbay-driven signal-chain construction
+- Route analysis and consequence summaries
+- Perspective switching for musician, engineer, and technical readings
+- Component inspection with context, tendencies, tradeoffs, and workflow implications
+- Parallel path modeling for send/return style processing
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+The room model was intentionally removed from this app so the product can stay focused. If a room-planning tool is built later, it should live as a separate application.
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## Development
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm install
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Build
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm run build
 ```
